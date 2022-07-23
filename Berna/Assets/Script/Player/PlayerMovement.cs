@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
         pcMovement();
     }
 
+    //test aja
+
     void pcMovement() 
     {
         float x = Input.GetAxis("Horizontal");
