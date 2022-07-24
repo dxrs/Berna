@@ -18,17 +18,14 @@ public class ColorChecker : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Merah")
+        if(col.gameObject.tag == this.gameObject.tag)
         {
-            if(this.gameObject.tag == "Merah")
-            {
-                Destroy(this.gameObject);
-                Destroy(col.gameObject);
-            }
+            Destroy(this.gameObject);
+            Destroy(col.gameObject);
         }
         else
         {
-            print(col.gameObject.tag);
+            
         }
     }
 
