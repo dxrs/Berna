@@ -13,6 +13,8 @@ public class Crane : MonoBehaviour
     GameObject blokYangDibawa;
     Rigidbody blockRB;
     Transform blockSpawnPoint;
+
+    float curentCountdown = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,6 @@ public class Crane : MonoBehaviour
         blokYangDibawa =(GameObject)Instantiate(blocks[Random.Range(0,blocks.Length)],blockSpawnPoint.position,Quaternion.identity);
         blockRB = blokYangDibawa.GetComponent<Rigidbody>();
         target = Waypoints.points[0];
-        print(blokYangDibawa);
     }
 
     // Update is called once per frame
@@ -38,11 +39,11 @@ public class Crane : MonoBehaviour
         
         Vector3 dir = target.position -transform.position;
         transform.Translate(dir.normalized*speed*Time.deltaTime,Space.World);
-
         if(Vector3.Distance(transform.position,target.position)<=0.3f)
         {
             GetNextWaypoint();
         }
+
     }
     void GetNextWaypoint()
     {
@@ -54,6 +55,7 @@ public class Crane : MonoBehaviour
         }        
         waypointIndex++;
         target = Waypoints.points[waypointIndex];
+        
     }
 
 }
