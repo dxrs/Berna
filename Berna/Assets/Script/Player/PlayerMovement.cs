@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public LayerMask groundMask;
+
     [SerializeField] float walkSpeed;
     [SerializeField] float gravity = -9.81f;
-     CharacterController characterController;
+    [SerializeField] float groundDist;
+    [SerializeField] float jumpHeight;
+
+    [SerializeField] Transform groundCheck;
+
+    CharacterController characterController;
+
+    bool isInGround;
 
     Vector3 velocity;
     void Start()
@@ -14,13 +24,26 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
+        isInGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
+
+        if(isInGround && velocity.y < 0f) 
+        {
+            velocity.y = -2f;
+        }
+        if(Input.GetKeyDown(KeyCode.Space) && isInGround) 
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
         pcMovement();
     }
 
-    //test aja
+ 
 
     void pcMovement() 
     {
