@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Crane : MonoBehaviour
 {
+
     public float speed =0.05f;
     Transform target;
 
@@ -13,8 +14,7 @@ public class Crane : MonoBehaviour
     GameObject blokYangDibawa;
     Rigidbody blockRB;
     Transform blockSpawnPoint;
-
-    float curentCountdown = 2;
+    bool stop = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,7 @@ public class Crane : MonoBehaviour
         blokYangDibawa =(GameObject)Instantiate(blocks[Random.Range(0,blocks.Length)],blockSpawnPoint.position,Quaternion.identity);
         blockRB = blokYangDibawa.GetComponent<Rigidbody>();
         target = Waypoints.points[0];
+        StartCoroutine(cranePause());
     }
 
     // Update is called once per frame
@@ -32,18 +33,11 @@ public class Crane : MonoBehaviour
             blokYangDibawa.transform.position = blockSpawnPoint.position;
             blockRB.isKinematic = true;
         }
-        else
+        if(!stop)
         {
-            return;
+            Vector3 dir = target.position - transform.position;
+            transform.Translate(dir.normalized*speed*Time.deltaTime,Space.World);
         }
-        
-        Vector3 dir = target.position -transform.position;
-        transform.Translate(dir.normalized*speed*Time.deltaTime,Space.World);
-        if(Vector3.Distance(transform.position,target.position)<=0.3f)
-        {
-            GetNextWaypoint();
-        }
-
     }
     void GetNextWaypoint()
     {
@@ -55,7 +49,21 @@ public class Crane : MonoBehaviour
         }        
         waypointIndex++;
         target = Waypoints.points[waypointIndex];
-        
+    }
+
+    public IEnumerator cranePause()
+    {
+        while (true)
+        {
+            if(Vector3.Distance(transform.position,target.position)<=0.05f)
+            {
+                stop = true;
+                GetNextWaypoint();
+            }
+            yield return new WaitForSeconds(0.5f);
+            stop = false;
+
+        }
     }
 
 }
