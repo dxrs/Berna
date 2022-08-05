@@ -4,26 +4,39 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] float powerToShoot;
-    [SerializeField] int curBullet;
-    [SerializeField] GameObject bulletnya;
+    public float dmg = 10;
+    public float range = 100;
 
-    public Transform muzzle;
-    public int maxBullet;
+    public Camera fpsCam;
+
+    public ParticleSystem pa;
 
 
     private void Update()
     {
         //contoh samplenya
-        
-        if (Input.GetKeyDown(KeyCode.F)) 
-        {
-            GameObject spawnBullet = Instantiate(bulletnya,
-                                muzzle.position,
-                                muzzle.rotation
-                                );
-            spawnBullet.GetComponent<Rigidbody>().velocity = muzzle.forward * powerToShoot;
 
+
+        if (Input.GetButtonDown("Fire1")) 
+        {
+            shoot();
+        }
+       
+        
+    }
+    void shoot()
+    {
+        pa.Play();
+        RaycastHit hit;
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        {
+            Debug.Log(hit.transform.name);
+
+            target targetnya = hit.transform.GetComponent<target>();
+            if(targetnya!= null) 
+            {
+                targetnya.TakeDamage(dmg);
+            }
         }
     }
 

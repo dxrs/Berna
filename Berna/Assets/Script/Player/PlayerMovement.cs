@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float groundDist;
     [SerializeField] float jumpHeight;
+   
 
     [SerializeField] Transform groundCheck;
 
