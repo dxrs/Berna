@@ -37,6 +37,12 @@ public class PlayerShoot : MonoBehaviour
             {
                 targetnya.TakeDamage(dmg);
             }
+
+            //nembak cubenya
+            if(hit.transform.tag == "Crane")
+            {
+                targetnya.craneShot();
+            }
         }
     }
 

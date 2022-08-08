@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3224046060808025282}
   - component: {fileID: 3224046060808025287}
   - component: {fileID: 3224046060808025284}
-  - component: {fileID: 3224046060808025285}
   m_Layer: 0
   m_Name: crane (2)
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3224046060808025285
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3224046060808025283}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3224046060870213688
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +94,6 @@ GameObject:
   - component: {fileID: 3224046060870213691}
   - component: {fileID: 3224046060870213692}
   - component: {fileID: 3224046060870213693}
-  - component: {fileID: 3224046060870213690}
   m_Layer: 0
   m_Name: crane (1)
   m_TagString: Untagged
@@ -181,19 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3224046060870213690
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3224046060870213688}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3224046061461712586
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,9 +179,10 @@ GameObject:
   - component: {fileID: 3224046061461712588}
   - component: {fileID: 3224046061461712589}
   - component: {fileID: 3224046061461712577}
+  - component: {fileID: -3475861816372995440}
   m_Layer: 0
   m_Name: crane
-  m_TagString: Untagged
+  m_TagString: Crane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,11 +264,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3224046061461712586}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 9, z: 6.5649357}
+  m_Center: {x: 0, y: -2, z: 0.0101617575}
 --- !u!114 &3224046061461712577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +287,22 @@ MonoBehaviour:
   - {fileID: 3708142189650923796, guid: 65e364be83a97eb4ca4406a38c63eea2, type: 3}
   - {fileID: 353815751075172609, guid: 46467b383b8399c409146aaaa5a3949a, type: 3}
   - {fileID: 9017099081892798967, guid: fce6222b1078a4e46bc1ee9ace308afd, type: 3}
+  - {fileID: 2866281724785525217, guid: cada4ea48a98ab947b04577407c005e4, type: 3}
+  getShot: 0
+--- !u!114 &-3475861816372995440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224046061461712586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc6ffc0db5191d4caa7b3adf2259cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nyawa: 50
+  blockSpot: {fileID: 6358860092435313597}
 --- !u!1 &3224046062669492033
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +314,6 @@ GameObject:
   - component: {fileID: 3224046062669492032}
   - component: {fileID: 3224046062669492037}
   - component: {fileID: 3224046062669492034}
-  - component: {fileID: 3224046062669492035}
   m_Layer: 0
   m_Name: crane (3)
   m_TagString: Untagged
@@ -398,19 +386,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3224046062669492035
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3224046062669492033}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6358860092435313597
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,13 @@ public class Crane : MonoBehaviour
     Rigidbody blockRB;
     Transform blockSpawnPoint;
     bool stop = false;
+
+    public bool getShot;
+
+
+    void Awake()
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +30,7 @@ public class Crane : MonoBehaviour
         blockRB = blokYangDibawa.GetComponent<Rigidbody>();
         target = Waypoints.points[0];
         StartCoroutine(cranePause());
+        getShot = false;
     }
 
     // Update is called once per frame
@@ -30,37 +38,58 @@ public class Crane : MonoBehaviour
     {
         if(blokYangDibawa != null)
         {
-            blokYangDibawa.transform.position = blockSpawnPoint.position;
-            blockRB.isKinematic = true;
+            if(blockSpawnPoint != null)
+            {
+                blokYangDibawa.transform.position = blockSpawnPoint.position;
+                blockRB.isKinematic = true;
+            }
+            else
+            {
+                blockRB.isKinematic = false;
+                blokYangDibawa = null;
+            }
         }
         if(!stop)
         {
-            Vector3 dir = target.position - transform.position;
-            transform.Translate(dir.normalized*speed*Time.deltaTime,Space.World);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed *Time.deltaTime);
+            
         }
     }
     void GetNextWaypoint()
     {
         if(waypointIndex >= Waypoints.points.Length - 1)
         {
-            blockRB.isKinematic = false;
-            Destroy(gameObject);
+            if(blokYangDibawa != null)
+            {
+                blockRB.isKinematic = false;
+                Destroy(gameObject);
+                Destroy(blokYangDibawa.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
             return;
         }        
         waypointIndex++;
         target = Waypoints.points[waypointIndex];
     }
 
+    public void destroyCrane()
+    {
+        Destroy(blockSpawnPoint.gameObject);
+    }
+
     public IEnumerator cranePause()
     {
         while (true)
         {
-            if(Vector3.Distance(transform.position,target.position)<=0.05f)
+            if(transform.position == target.position)
             {
                 stop = true;
                 GetNextWaypoint();
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             stop = false;
 
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ColorChecker : MonoBehaviour
 {
+    Collision objekTersentuh;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +19,22 @@ public class ColorChecker : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == this.gameObject.tag)
+        if(col.gameObject.name == this.gameObject.name)
         {
+            objekTersentuh = col;
+            StartCoroutine("startDestroying");
+        }
+    }
+
+    IEnumerator startDestroying()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
             Destroy(this.gameObject);
-            Destroy(col.gameObject);
+            Destroy(objekTersentuh.gameObject);
         }
-        else
-        {
-            
-        }
+        
     }
 
 }

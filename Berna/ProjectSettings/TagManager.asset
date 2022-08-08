@@ -9,6 +9,8 @@ TagManager:
   - Hijau
   - Biru
   - Ungu
+  - Blocks
+  - Crane
   layers:
   - Default
   - TransparentFX
