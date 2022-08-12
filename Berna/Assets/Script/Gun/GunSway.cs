@@ -24,14 +24,14 @@ public class GunSway : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if(Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0) 
         {
             isSwaying = false;
         }
        
         else { isSwaying = true; }
-         */
+         
         float xMmouse = Input.GetAxis("Mouse X");
         float yMmouse = Input.GetAxis("Mouse Y");
 

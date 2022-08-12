@@ -6,9 +6,10 @@ public class GunIdle : MonoBehaviour
 {
     public static GunIdle gunIdle;
 
-    [SerializeField] float rotSpeed;
+    [SerializeField] float idleSpeed;
+    [SerializeField] float idlePower;
 
-    Quaternion rot;
+    Vector3 pos;
 
     private void Awake()
     {
@@ -17,11 +18,29 @@ public class GunIdle : MonoBehaviour
 
     private void Start()
     {
-        rot = transform.localRotation;
+        
+        
     }
 
     private void Update()
     {
-       // transform.localRotation=
+
+        IDLE();
+        //print(transform.position);
     }
+
+    void IDLE()
+    {
+        pos = transform.position;
+        transform.position = pos + new Vector3(0.0f,
+         Mathf.Sin(idleSpeed * Time.time) * idlePower,
+         0.0f);
+        if (!GunSway.gunSway.isSwaying) 
+        {
+         
+        }
+       
+    }
+
+    
 }
