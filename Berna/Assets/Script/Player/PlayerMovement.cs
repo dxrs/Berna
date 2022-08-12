@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+    public static PlayerMovement playerMovement;
+
     public LayerMask groundMask;
+
+    public bool isMoving;
 
     [SerializeField] float walkSpeed;
     [SerializeField] float gravity = -9.81f;
@@ -20,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     bool isInGround;
 
     Vector3 velocity;
+    private void Awake()
+    {
+        playerMovement = this;
+    }
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -30,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         isInGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
 
         if(isInGround && velocity.y < 0f) 
@@ -54,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 playerMove= transform.right * x + transform.forward * y;
 
         characterController.Move(playerMove * walkSpeed * Time.deltaTime);
+        //Debug.Log( walkSpeed * Time.deltaTime);
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);

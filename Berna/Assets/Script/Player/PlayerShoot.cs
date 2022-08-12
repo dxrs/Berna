@@ -17,7 +17,7 @@ public class PlayerShoot : MonoBehaviour
         //contoh samplenya
 
 
-        if (Input.GetButtonDown("Fire1")) 
+        if (Input.GetButtonDown("Fire2")) 
         {
             shoot();
         }
