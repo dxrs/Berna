@@ -24,10 +24,10 @@ public class ZombieSpawner : MonoBehaviour
 
     IEnumerator spawner()
     {
-        while (zombieCount < 10)
+        while (zombieCount < 1)
         {
-            posx = Random.Range(0,20);
-            posz = Random.Range(0,20);
+            posx = Random.Range(-96,93);
+            posz = Random.Range(-96,91);
             if(posx<7 || posx>14 || posz<7 || posz>14)
             {
                 Instantiate(zombies,new Vector3(posx,0.5f,posz),Quaternion.identity);

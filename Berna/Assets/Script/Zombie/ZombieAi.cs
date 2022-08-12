@@ -9,6 +9,9 @@ public class ZombieAi : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
+    //Variable animation
+    public static string animaState;
+
     //Variable buat patrol
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -23,10 +26,13 @@ public class ZombieAi : MonoBehaviour
     bool playerInRange, playerInAttackRange;
 
 
+
     private void Awake()
     {
-        player = GameObject.Find("playersementara").transform;
+        player = GameObject.Find("TestPlayer").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        
     }
 
     void Update()
@@ -63,13 +69,14 @@ public class ZombieAi : MonoBehaviour
 
     void patroling()
     {
-
-        agent.speed = 2;
-        agent.acceleration = 3;
+        animaState = "Patroling";
+        agent.speed = 0.5f;
+        agent.acceleration = 0.1f;
 
         if(!walkPointSet)
         {
-            searchWalkPoint();
+            animaState = "Idle";
+            StartCoroutine(idleMOve());
         }
         if(walkPointSet)
         {
@@ -89,8 +96,8 @@ public class ZombieAi : MonoBehaviour
     void chasing()
     {
         agent.SetDestination(player.position);
-        agent.speed = 10;
-        agent.acceleration = 5;
+        agent.speed = 2;
+        agent.acceleration = 1;
     }
 
 
@@ -99,4 +106,12 @@ public class ZombieAi : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
+    IEnumerator idleMOve()
+    {
+        yield return new WaitForSeconds(5);
+        searchWalkPoint();
+        
+    }
+    
 }

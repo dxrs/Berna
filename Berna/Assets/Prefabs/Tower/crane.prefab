@@ -284,9 +284,6 @@ MonoBehaviour:
   speed: 2
   blocks:
   - {fileID: 2866281724785525217, guid: 14951fe7b2096304193d510b320b4699, type: 3}
-  - {fileID: 3708142189650923796, guid: 65e364be83a97eb4ca4406a38c63eea2, type: 3}
-  - {fileID: 353815751075172609, guid: 46467b383b8399c409146aaaa5a3949a, type: 3}
-  - {fileID: 9017099081892798967, guid: fce6222b1078a4e46bc1ee9ace308afd, type: 3}
   - {fileID: 2866281724785525217, guid: cada4ea48a98ab947b04577407c005e4, type: 3}
   getShot: 0
 --- !u!114 &-3475861816372995440
