@@ -29,8 +29,10 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) 
         {
             shoot();
+            shootAnimator.SetTrigger("shot"); // ini shoot nya 
         }
 
+///////////////////////////////////// apa ni kok pake ini ////////////////////////
         shootAnimator.SetBool("isShot", test);
 
         if (Input.GetKey(KeyCode.J))
@@ -51,7 +53,7 @@ public class PlayerShoot : MonoBehaviour
         {
             //anim.Stop("Shoot");
         }
-        
+ ////////////////////////////////////////////////////////////////////////////////////////       
     }
     void shoot()
     {
