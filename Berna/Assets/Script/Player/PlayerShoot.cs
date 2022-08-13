@@ -10,18 +10,47 @@ public class PlayerShoot : MonoBehaviour
     public Camera fpsCam;
 
     public ParticleSystem pa;
+    public Animator shootAnimator;
 
+
+
+
+    [SerializeField] bool test;
+    private void Start()
+    {
+        //anim = gameObject.GetComponent<Animation>();
+    }
 
     private void Update()
     {
         //contoh samplenya
+     
 
-
-        if (Input.GetButtonDown("Fire2")) 
+        if (Input.GetButtonDown("Fire1")) 
         {
             shoot();
         }
+
+        shootAnimator.SetBool("isShot", test);
+
+        if (Input.GetKey(KeyCode.J))
+        {
        
+             test = true;
+        }
+        if (Input.GetKeyUp(KeyCode.J)) 
+        {
+            test = false;
+        }
+        if (test) 
+        {
+           
+        
+        }
+        else 
+        {
+            //anim.Stop("Shoot");
+        }
         
     }
     void shoot()
