@@ -49,7 +49,7 @@ public class PlayerShoot : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            target targetnya = hit.transform.GetComponent<target>();
+            TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
             if(targetnya!= null) 
             {
                 targetnya.TakeDamage(dmg);

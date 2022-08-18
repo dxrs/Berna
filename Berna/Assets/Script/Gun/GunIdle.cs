@@ -6,8 +6,11 @@ public class GunIdle : MonoBehaviour
 {
     public static GunIdle gunIdle;
 
-    [SerializeField] float idleSpeed;
-    [SerializeField] float idlePower;
+    float curIdleSpeed= 2f;     
+    float curIdlePower= 0.0005f;
+
+    float sprintSpeed=10f;
+    float sprintPower=0.0009f;
 
     Vector3 pos;
 
@@ -21,19 +24,34 @@ public class GunIdle : MonoBehaviour
     private void Update()
     {
 
-        IDLE();
+        gunSinIdle();
 
     }
 
-    void IDLE()
+    void gunSinIdle()
     {
-        if (!PlayerShoot.playerShoot.playerIsShooting && !GunAiming.gunAiming.isAiming) 
+        pos = transform.position;
+        if (!PlayerShoot.playerShoot.playerIsShooting 
+            && !GunAiming.gunAiming.isAiming
+            && !PlayerMovement.playerMovement.isSprint) 
         {
-            pos = transform.position;
+           
             transform.position = pos + new Vector3(0.0f,
-             Mathf.Sin(idleSpeed * Time.time) * idlePower,
+             Mathf.Sin(curIdleSpeed * Time.time) * curIdlePower,
              0.0f);
         }
+        if (PlayerMovement.playerMovement.isSprint
+               && !GunAiming.gunAiming.isAiming
+               && !PlayerShoot.playerShoot.playerIsShooting)
+        {
+            transform.position = pos + new Vector3(0.0f,
+           Mathf.Sin(sprintSpeed * Time.time) * sprintPower,
+           0.0f);
+
+
+        }
+       
+       
        
       
        

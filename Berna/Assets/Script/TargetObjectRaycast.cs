@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class target : MonoBehaviour
+public class TargetObjectRaycast : MonoBehaviour
 {
     public float nyawa = 50f;
     public GameObject blockSpot;

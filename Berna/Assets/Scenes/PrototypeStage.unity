@@ -48729,8 +48729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7790dff903c8a4bad201abefc176ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSpeed: 1.5
-  idlePower: 0.0001
+  idleSpeed: 2
+  idlePower: 0.0005
 --- !u!114 &2039235347
 MonoBehaviour:
   m_ObjectHideFlags: 0
