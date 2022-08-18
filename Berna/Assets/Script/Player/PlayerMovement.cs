@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isMoving;
     public bool isSprint;
-    public bool isPlayerIdle;
+    public bool isPlayerWalk;
 
     [SerializeField] float walkSpeed;
     [SerializeField] float gravity = -9.81f;
@@ -50,6 +50,15 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isInGround) 
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+           
+        }
+
+        if (!isInGround) 
+        {
+            if (InGameUI.inGameUI.playerStamina > 0.0f)
+            {
+                InGameUI.inGameUI.playerStamina -= 8 * Time.deltaTime;
+            }
         }
 
         pcMovement();
@@ -79,10 +88,14 @@ public class PlayerMovement : MonoBehaviour
                Input.GetKey(KeyCode.S) ||
                Input.GetKey(KeyCode.D))
         {
-            isPlayerIdle = true;
-            if (Input.GetKey(KeyCode.LeftShift))
+            isPlayerWalk = true;
+            if (Input.GetKey(KeyCode.LeftShift) && isInGround)
             {
                 isSprint = true;
+                if (InGameUI.inGameUI.playerStamina > 0.0f) 
+                {
+                    InGameUI.inGameUI.playerStamina -= 8 * Time.deltaTime;
+                }
             }
            
         }
@@ -91,8 +104,8 @@ public class PlayerMovement : MonoBehaviour
               Input.GetKeyUp(KeyCode.S) ||
               Input.GetKeyUp(KeyCode.D))
         {
-            isPlayerIdle = false;
-            if (Input.GetKey(KeyCode.LeftShift) && !isPlayerIdle)
+            isPlayerWalk = false;
+            if (Input.GetKey(KeyCode.LeftShift) && !isPlayerWalk)
             {
                 isSprint = false;
             }
@@ -101,6 +114,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isSprint = false;
+        }
+        if (!isSprint) 
+        {
+            if (InGameUI.inGameUI.playerStamina < 100.0f)
+            {
+                InGameUI.inGameUI.playerStamina += 3 * Time.deltaTime;
+            }
         }
         #endregion 
 
