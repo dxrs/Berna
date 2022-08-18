@@ -27,14 +27,14 @@ public class PlayerShoot : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetButtonDown("Fire1")) // jadi ini burst shot apa shot terus2an?
-        if (Input.GetMouseButtonDown(0)) // jadi ini burst shot apa shot terus2an?
+        
+        if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
         {
             shoot();
             shootAnimator.SetTrigger("shot"); // ini shoot nya 
             playerIsShooting = true;
         }
-        if (Input.GetButtonUp("Fire1")) 
+
         if (Input.GetMouseButtonUp(0)) 
         {
             playerIsShooting = false;
@@ -47,7 +47,7 @@ public class PlayerShoot : MonoBehaviour
     void shoot()
     {
         pa.Play();
-        particleHit.Play();
+        //particleHit.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
