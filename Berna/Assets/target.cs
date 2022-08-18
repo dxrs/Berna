@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class target : MonoBehaviour
 {
     public float nyawa = 50f;
+    float MaxNyawaZombie = 50;
+
+    [Header("Crane and Box")]
     public GameObject blockSpot;
     Collider bxcollider;
+
+    [Header("Zombie")]
+    public Image BarImage;
+
+    void Update()
+    {
+        zombieHealth();
+    }
 
     public void TakeDamage(float amount) 
     {
@@ -17,6 +29,18 @@ public class target : MonoBehaviour
     void die() 
     {
         Destroy(gameObject);
+    }
+
+    void zombieHealth()
+    {
+        if(BarImage == null)
+        {
+            return;
+        }
+        else
+        {
+            BarImage.fillAmount = nyawa/MaxNyawaZombie;
+        }
     }
 
     public void craneShot()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ZombieAi : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ZombieAi : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Variable animation
-    public static string animaState;
+    public static float velo;
 
     //Variable buat patrol
     public Vector3 walkPoint;
@@ -25,6 +26,11 @@ public class ZombieAi : MonoBehaviour
     public float sightRange, attackRange;
     bool playerInRange, playerInAttackRange;
 
+    //nyawa
+    float MaxNyawa;
+    public static float CurNyawa;
+    public Image HealthBarImage;
+
 
 
     private void Awake()
@@ -37,6 +43,8 @@ public class ZombieAi : MonoBehaviour
 
     void Update()
     {
+        velo = agent.velocity.magnitude;
+        //print(velo);
         //Check sight rangernya
         playerInRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -69,24 +77,21 @@ public class ZombieAi : MonoBehaviour
 
     void patroling()
     {
-        animaState = "Patroling";
         agent.speed = 0.5f;
-        agent.acceleration = 0.1f;
 
         if(!walkPointSet)
         {
-            animaState = "Idle";
-            StartCoroutine(idleMOve());
+            searchWalkPoint();
         }
         if(walkPointSet)
         {
             agent.SetDestination(walkPoint);
         }
 
-        Vector3 distanceToWalkpoint = transform.position -walkPoint;
+        Vector3 distanceToWalkpoint = transform.position - walkPoint;
 
         //biar bisa cari walkpoint lagi kalo udah nyampe target
-        if(distanceToWalkpoint.magnitude<1f)
+        if(distanceToWalkpoint.magnitude<0.05f)
         {
             walkPointSet = false;
         }
@@ -95,9 +100,15 @@ public class ZombieAi : MonoBehaviour
 
     void chasing()
     {
+        walkPointSet = false;
         agent.SetDestination(player.position);
-        agent.speed = 2;
-        agent.acceleration = 1;
+        agent.speed = 5;
+    }
+
+
+    void nyawanya()
+    {
+        HealthBarImage.fillAmount = CurNyawa/MaxNyawa;
     }
 
 
@@ -105,13 +116,6 @@ public class ZombieAi : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightRange);
-    }
-
-    IEnumerator idleMOve()
-    {
-        yield return new WaitForSeconds(5);
-        searchWalkPoint();
-        
     }
     
 }
