@@ -26,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetButton("Fire1")) // jadi ini burst shot apa shot terus2an?
+        if (Input.GetButtonDown("Fire1")) // jadi ini burst shot apa shot terus2an?
         {
             shoot();
             shootAnimator.SetTrigger("shot"); // ini shoot nya 
