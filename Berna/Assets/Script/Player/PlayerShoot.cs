@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+
+    public static PlayerShoot playerShoot;
+
     public float dmg = 10;
     public float range = 100;
+
+    public bool playerIsShooting;
 
     public Camera fpsCam;
 
@@ -13,47 +18,28 @@ public class PlayerShoot : MonoBehaviour
     public Animator shootAnimator;
 
 
-
-
-    [SerializeField] bool test;
-    private void Start()
+    private void Awake()
     {
-        //anim = gameObject.GetComponent<Animation>();
+        playerShoot = this;
     }
 
     private void Update()
     {
-        //contoh samplenya
-     
 
-        if (Input.GetButtonDown("Fire1")) 
+        if (Input.GetButtonDown("Fire1")) // jadi ini burst shot apa shot terus2an?
         {
             shoot();
             shootAnimator.SetTrigger("shot"); // ini shoot nya 
+            playerIsShooting = true;
         }
-
-///////////////////////////////////// apa ni kok pake ini ////////////////////////
-        shootAnimator.SetBool("isShot", test);
-
-        if (Input.GetKey(KeyCode.J))
+        if (Input.GetButtonUp("Fire1")) 
         {
+            playerIsShooting = false;
+        }
+         
+
        
-             test = true;
-        }
-        if (Input.GetKeyUp(KeyCode.J)) 
-        {
-            test = false;
-        }
-        if (test) 
-        {
-           
-        
-        }
-        else 
-        {
-            //anim.Stop("Shoot");
-        }
- ////////////////////////////////////////////////////////////////////////////////////////       
+     
     }
     void shoot()
     {
