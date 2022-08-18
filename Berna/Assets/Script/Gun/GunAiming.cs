@@ -20,12 +20,12 @@ public class GunAiming : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Fire2")) 
+        if (Input.GetMouseButton(1)) 
         {
             isAiming = true;
             //transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, moveSpeed * Time.deltaTime);
         }
-        if (Input.GetButtonUp("Fire2")) 
+        if (Input.GetMouseButtonUp(1)) 
         {
             isAiming = false;
            // transform.localPosition = Vector3.Lerp(targetPos, transform.localPosition, moveSpeed * Time.deltaTime);
