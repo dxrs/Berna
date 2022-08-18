@@ -13,7 +13,7 @@ public class ZombieSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(spawner());
+         StartCoroutine(spawner());
     }
 
     // Update is called once per frame

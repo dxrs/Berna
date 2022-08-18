@@ -26,16 +26,11 @@ public class ZombieAi : MonoBehaviour
     public float sightRange, attackRange;
     bool playerInRange, playerInAttackRange;
 
-    //nyawa
-    float MaxNyawa;
-    public static float CurNyawa;
-    public Image HealthBarImage;
-
 
 
     private void Awake()
     {
-        player = GameObject.Find("TestPlayer").transform;
+        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
 
         
@@ -44,7 +39,7 @@ public class ZombieAi : MonoBehaviour
     void Update()
     {
         velo = agent.velocity.magnitude;
-        //print(velo);
+
         //Check sight rangernya
         playerInRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -104,13 +99,6 @@ public class ZombieAi : MonoBehaviour
         agent.SetDestination(player.position);
         agent.speed = 5;
     }
-
-
-    void nyawanya()
-    {
-        HealthBarImage.fillAmount = CurNyawa/MaxNyawa;
-    }
-
 
     void OnDrawGizmosSelected()
     {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TargetObjectRaycast : MonoBehaviour
 {
     public float nyawa = 50f;
-    float MaxNyawaZombie = 50;
+    float MaxNyawaZombie = 100;
 
     [Header("Crane and Box")]
     public GameObject blockSpot;
