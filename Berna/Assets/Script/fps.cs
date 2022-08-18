@@ -12,12 +12,28 @@ public class fps : MonoBehaviour
     float pollingTime = 1f;
     float time;
     int frameCount;
+
+
+    private void Awake()
+    {
+ 
+    }
     private void Start()
     {
         //Application.targetFrameRate = 60;
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if (Cursor.visible) 
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            
+        }
+
         time += Time.deltaTime;
 
         frameCount++;
@@ -30,4 +46,6 @@ public class fps : MonoBehaviour
             frameCount = 0;
         }
     }
+
+
 }

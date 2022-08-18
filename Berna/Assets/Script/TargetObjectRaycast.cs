@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class target : MonoBehaviour
+public class TargetObjectRaycast : MonoBehaviour
 {
     public float nyawa = 50f;
     float MaxNyawaZombie = 50;

@@ -4,25 +4,42 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+
+    public static PlayerShoot playerShoot;
+
     public float dmg = 10;
     public float range = 100;
+
+    public bool playerIsShooting;
 
     public Camera fpsCam;
 
     public ParticleSystem pa;
+    public Animator shootAnimator;
 
+
+    private void Awake()
+    {
+        playerShoot = this;
+    }
 
     private void Update()
     {
-        //contoh samplenya
 
-
-        if (Input.GetButtonDown("Fire1")) 
+        if (Input.GetButton("Fire1")) // jadi ini burst shot apa shot terus2an?
         {
             shoot();
+            shootAnimator.SetTrigger("shot"); // ini shoot nya 
+            playerIsShooting = true;
         }
+        if (Input.GetButtonUp("Fire1")) 
+        {
+            playerIsShooting = false;
+        }
+         
+
        
-        
+     
     }
     void shoot()
     {
@@ -32,7 +49,7 @@ public class PlayerShoot : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            target targetnya = hit.transform.GetComponent<target>();
+            TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
             if(targetnya!= null) 
             {
                 targetnya.TakeDamage(dmg);
