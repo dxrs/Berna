@@ -22,7 +22,7 @@ public class TargetObjectRaycast : MonoBehaviour
 
     public void TakeDamage(float amount) 
     {
-        nyawa -= amount;
+        nyawa -= amount * Time.deltaTime;
         if (nyawa <= 0) { die(); }
     }
 
