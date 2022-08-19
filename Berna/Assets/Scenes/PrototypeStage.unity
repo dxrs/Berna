@@ -5647,8 +5647,7 @@ MonoBehaviour:
   range: 100
   playerIsShooting: 0
   fpsCam: {fileID: 1314289468}
-  pa: {fileID: 1227206906}
-  particleHit: {fileID: 0}
+  particleHit: {fileID: 1227206906}
   shootAnimator: {fileID: 174569613}
 --- !u!1 &176213857
 GameObject:
