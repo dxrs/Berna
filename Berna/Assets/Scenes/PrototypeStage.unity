@@ -5643,7 +5643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3f85ab5e2afc84f81d302ce80f852c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 10
+  gunDamage: 50
   range: 100
   playerIsShooting: 0
   fpsCam: {fileID: 1314289468}

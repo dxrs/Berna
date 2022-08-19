@@ -7,14 +7,14 @@ public class PlayerShoot : MonoBehaviour
 
     public static PlayerShoot playerShoot;
 
-    public float dmg = 10;
-    public float range = 100;
+    public float gunDamage; //-> nanti pke array krn setiap senjata beda dmg
+    public float range = 100; //-> sama kyk d atas
 
     public bool playerIsShooting;
 
     public Camera fpsCam;
 
-    public ParticleSystem pa;
+  
     public ParticleSystem particleHit;
     public Animator shootAnimator;
 
@@ -46,8 +46,8 @@ public class PlayerShoot : MonoBehaviour
     }
     void shoot()
     {
-        pa.Play();
-        //particleHit.Play();
+        
+        particleHit.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
@@ -56,7 +56,7 @@ public class PlayerShoot : MonoBehaviour
             TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
             if(targetnya!= null) 
             {
-                targetnya.TakeDamage(dmg);
+                targetnya.TakeDamage(gunDamage);
             }
 
             //nembak cubenya
