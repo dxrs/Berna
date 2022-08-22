@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 1067903338928519045}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,8 +304,9 @@ MonoBehaviour:
   walkPointRange: 10
   timeBetweenAttack: 0
   sightRange: 15
-  attackRange: 1
-  HealthBarImage: {fileID: 0}
+  attackRange: 3
+  blinkIntensity: 10
+  blinkDuration: 2
 --- !u!195 &5239961473940445554
 NavMeshAgent:
   m_ObjectHideFlags: 0

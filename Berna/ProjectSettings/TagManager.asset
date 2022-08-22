@@ -11,6 +11,7 @@ TagManager:
   - Ungu
   - Blocks
   - Crane
+  - Zombie
   layers:
   - Default
   - TransparentFX

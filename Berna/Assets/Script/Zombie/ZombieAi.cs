@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ZombieAi : MonoBehaviour
 {
+    public static ZombieAi instance;
+
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -27,18 +29,42 @@ public class ZombieAi : MonoBehaviour
     bool playerInRange, playerInAttackRange;
 
 
+    [Header("Hitted Effect")]
+    public float blinkIntensity;
+    public float blinkDuration;
+    float blinkTimer;
+    SkinnedMeshRenderer meshRender;
+
+    //attack
+    public static string attak;
+
+
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+    }
 
-        
+    void Start()
+    {
+        meshRender =GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     void Update()
     {
         velo = agent.velocity.magnitude;
+
+        //effect kena hit
+        blinkTimer -= Time.deltaTime;
+        float lerp = Mathf.Clamp01(blinkTimer/blinkDuration);
+        float intensity = lerp * blinkIntensity;
+        meshRender.material.color = Color.white * intensity;
 
         //Check sight rangernya
         playerInRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -51,10 +77,11 @@ public class ZombieAi : MonoBehaviour
         if(playerInRange && !playerInAttackRange)
         {
             chasing();
+            attak = "dunno";
         }
         if(playerInRange && playerInAttackRange)
         {
-            //void attak taroh sini
+            attack();
         }
     }
 
@@ -96,14 +123,25 @@ public class ZombieAi : MonoBehaviour
     void chasing()
     {
         walkPointSet = false;
+        agent.stoppingDistance = 2;
         agent.SetDestination(player.position);
         agent.speed = 5;
+    }
+
+    void attack()
+    {
+        attak = "serang";
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    public static void shooted()
+    {
+        ZombieAi.instance.blinkTimer = ZombieAi.instance.blinkDuration;
     }
     
 }

@@ -59,6 +59,11 @@ public class PlayerShoot : MonoBehaviour
                 targetnya.TakeDamage(dmg);
             }
 
+            if(hit.transform.tag == "Zombie")
+            {
+                ZombieAi.shooted();
+            }
+
             //nembak cubenya
             if(hit.transform.tag == "Crane")
             {
