@@ -7,8 +7,8 @@ public class PlayerShoot : MonoBehaviour
 
     public static PlayerShoot playerShoot;
 
-    public float gunDamage; //-> nanti pke array krn setiap senjata beda dmg
-    public float range = 100; //-> sama kyk d atas
+    public float gunDamage; 
+    public float range = 100; 
 
     public bool playerIsShooting;
 
@@ -17,6 +17,8 @@ public class PlayerShoot : MonoBehaviour
   
     public ParticleSystem particleHit;
     public Animator shootAnimator;
+
+    public string id;
 
 
     private void Awake()
@@ -27,18 +29,35 @@ public class PlayerShoot : MonoBehaviour
     private void Update()
     {
 
-        
-        if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
+        if (id == "SMG") 
         {
-            shoot();
-            shootAnimator.SetTrigger("shot"); // ini shoot nya 
-            playerIsShooting = true;
-        }
+            if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
+            {
+                shoot();
+                shootAnimator.SetTrigger("shot"); // ini shoot nya 
+                playerIsShooting = true;
+            }
 
-        if (Input.GetMouseButtonUp(0)) 
-        {
-            playerIsShooting = false;
+            if (Input.GetMouseButtonUp(0))
+            {
+                playerIsShooting = false;
+            }
         }
+        if (id == "PISTOL") 
+        {
+            if (Input.GetMouseButtonDown(0)) 
+            {
+                shoot();
+                shootAnimator.SetTrigger("PistolShoot"); 
+                playerIsShooting = true;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                playerIsShooting = false;
+            }
+        }
+       
          
 
        
