@@ -51,10 +51,6 @@ public class GunIdle : MonoBehaviour
 
         }
        
-       
-       
-      
-       
     }
 
     

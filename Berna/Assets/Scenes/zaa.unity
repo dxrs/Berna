@@ -965,7 +965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &174569612
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,11 +1016,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: 50
   range: 100
-  playerIsShooting: 0
+  playerIsShooting: 1
   fpsCam: {fileID: 1314289468}
   particleHit: {fileID: 905745010}
   shootAnimator: {fileID: 174569613}
   id: SMG
+  fireRate: 0
 --- !u!1 &176213857
 GameObject:
   m_ObjectHideFlags: 0
@@ -8879,7 +8880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &410065772
 Transform:
   m_ObjectHideFlags: 0
@@ -8954,6 +8955,7 @@ MonoBehaviour:
   particleHit: {fileID: 905745010}
   shootAnimator: {fileID: 410065774}
   id: PISTOL
+  fireRate: 0.3
 --- !u!95 &410065774
 Animator:
   serializedVersion: 4
