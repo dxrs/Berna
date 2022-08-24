@@ -66,46 +66,53 @@ public class PlayerShoot : MonoBehaviour
         }
      
     }
+    void Shoot()
+    {
+        if (playerIsShooting)
+        {
+            if (Time.time > lastShootTime + fireRate)
+            {
+                Debug.Log("kena");
+                lastShootTime = Time.time;
+                rayCasthoot();
+
+            }
+        }
+        else
+        {
+            rayCasthoot();
+        }
+
+    }
     void rayCasthoot()
     {
         
         particleHit.Play();
-        if (playerIsShooting)
+        RaycastHit hit;
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            Debug.Log(hit.transform.name);
+
+            TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
+            if (targetnya != null)
             {
-                Debug.Log(hit.transform.name);
-
-                TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
-                if (targetnya != null)
-                {
-                    targetnya.TakeDamage(gunDamage);
-
-                }
-
-                //nembak cubenya
-                if (hit.transform.tag == "Crane")
-                {
-                    targetnya.craneShot();
-                }
-
+                targetnya.TakeDamage(gunDamage);
 
             }
+
+            //nembak cubenya
+            if (hit.transform.tag == "Crane")
+            {
+                targetnya.craneShot();
+            }
+
+
         }
+      
         
     }
 
-    void Shoot() 
-    {
-        if (Time.time > lastShootTime + fireRate) 
-        {
-            Debug.Log("kena");
-            lastShootTime = Time.time;
-            rayCasthoot();
-            // panggil anim di sini jadi aneh karena ngikuti firerate
-        }
-    }
+   
 
    
 
