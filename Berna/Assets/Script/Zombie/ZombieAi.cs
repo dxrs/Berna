@@ -20,10 +20,6 @@ public class ZombieAi : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    // variable buat attack
-    public float timeBetweenAttack;
-    bool alredyAttack;
-
     //state
     public float sightRange, attackRange;
     bool playerInRange, playerInAttackRange;
@@ -37,6 +33,9 @@ public class ZombieAi : MonoBehaviour
 
     //attack
     public static string attak;
+    float timer = 3;
+    [SerializeField]
+    float timeToAttack;
 
 
 
@@ -54,11 +53,15 @@ public class ZombieAi : MonoBehaviour
     void Start()
     {
         meshRender =GetComponentInChildren<SkinnedMeshRenderer>();
+
+        timeToAttack = timer;
     }
 
     void Update()
     {
         velo = agent.velocity.magnitude;
+
+        
 
         //effect kena hit
         blinkTimer -= Time.deltaTime;
@@ -82,6 +85,7 @@ public class ZombieAi : MonoBehaviour
         if(playerInRange && playerInAttackRange)
         {
             attack();
+            
         }
     }
 
@@ -99,6 +103,7 @@ public class ZombieAi : MonoBehaviour
 
     void patroling()
     {
+        agent.updateRotation = true;
         agent.speed = 0.5f;
 
         if(!walkPointSet)
@@ -122,6 +127,7 @@ public class ZombieAi : MonoBehaviour
 
     void chasing()
     {
+        agent.updateRotation = true;
         walkPointSet = false;
         agent.stoppingDistance = 2;
         agent.SetDestination(player.position);
@@ -130,18 +136,37 @@ public class ZombieAi : MonoBehaviour
 
     void attack()
     {
+        agent.updateRotation = false;
+        FaceTarget(player.position);
         attak = "serang";
+        
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
     public static void shooted()
     {
         ZombieAi.instance.blinkTimer = ZombieAi.instance.blinkDuration;
+    }
+
+    private void FaceTarget(Vector3 destination)
+    {
+        Vector3 lookPos = destination - transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 2*Time.deltaTime);  
+    }
+
+    void attackDemage(float dmg)
+    {
+        PlayerDestroy.playerCurrentHealth -= dmg;
     }
     
 }

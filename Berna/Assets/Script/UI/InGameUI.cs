@@ -25,5 +25,7 @@ public class InGameUI : MonoBehaviour
     private void Update()
     {
         tmp_stamina.text = "Stamina : " + Mathf.RoundToInt(playerStamina);
+
+        tmp_nyawa.text = "Nyawa : " + PlayerDestroy.playerCurrentHealth;
     }
 }
