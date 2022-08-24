@@ -1014,14 +1014,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3f85ab5e2afc84f81d302ce80f852c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunDamage: 50
+  gunDamage: 200
   range: 100
   playerIsShooting: 1
   fpsCam: {fileID: 1314289468}
   particleHit: {fileID: 905745010}
   shootAnimator: {fileID: 174569613}
   id: SMG
-  fireRate: 0
+  fireRate: 0.5
 --- !u!1 &176213857
 GameObject:
   m_ObjectHideFlags: 0
