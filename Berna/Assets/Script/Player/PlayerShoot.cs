@@ -8,7 +8,7 @@ public class PlayerShoot : MonoBehaviour
     public static PlayerShoot playerShoot;
 
     public float gunDamage; 
-    public float range; 
+    public float range = 100; 
 
     public bool playerIsShooting;
 
@@ -17,8 +17,6 @@ public class PlayerShoot : MonoBehaviour
   
     public ParticleSystem particleHit;
     public Animator shootAnimator;
-
-    public GameObject[] guns;
 
     public string id;
 
@@ -38,11 +36,11 @@ public class PlayerShoot : MonoBehaviour
 
         if (id == "SMG") 
         {
-            if (Input.GetMouseButton(0)) 
+            if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
             {
-          
+                //Raycasthoot();
                 Shoot();
-                shootAnimator.SetTrigger("shot"); 
+                shootAnimator.SetTrigger("shot"); // ini shoot nya 
                 playerIsShooting = true;
             }
 
@@ -86,7 +84,7 @@ public class PlayerShoot : MonoBehaviour
 
                 }
 
-                
+                //nembak cubenya
                 if (hit.transform.tag == "Crane")
                 {
                     targetnya.craneShot();
@@ -105,7 +103,7 @@ public class PlayerShoot : MonoBehaviour
             Debug.Log("kena");
             lastShootTime = Time.time;
             rayCasthoot();
-           
+            // panggil anim di sini jadi aneh karena ngikuti firerate
         }
     }
 

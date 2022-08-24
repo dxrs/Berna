@@ -11,8 +11,6 @@ public class GunAiming : MonoBehaviour
 
     [SerializeField] float moveSpeed;
 
-    public Transform gunPivot;
-
     public bool isAiming;
 
     private void Awake()
