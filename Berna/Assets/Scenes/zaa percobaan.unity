@@ -655,7 +655,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24712
+  m_Name: pb_Mesh41394
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: 174569612}
   - component: {fileID: 174569614}
   - component: {fileID: 174569613}
+  - component: {fileID: 174569615}
   m_Layer: 0
   m_Name: SMG
   m_TagString: Untagged
@@ -1021,6 +1022,35 @@ MonoBehaviour:
   shootAnimator: {fileID: 174569613}
   id: SMG
   fireRate: 0.05
+--- !u!114 &174569615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174569611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7c737e655bd3a4ebc79955e51e940c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  gunPivot: {fileID: 0}
+  anim: {fileID: 0}
+  id: 0
+  curIdleSpeed: 0
+  curIdlePower: 0
+  curSprintSpeed: 0
+  curSprintPower: 0
+  intensity: 0
+  smooth: 0
+  defaultPos: {x: 0, y: 0, z: 0}
+  aimingPos: {x: 0, y: 0, z: 0}
+  movementAimPosSeed: 0
+  aimFieldOfView: 0
+  defaultFov: 0
+  isAiming: 0
+  fireRate: 0
 --- !u!1 &176213857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +2059,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27622
+  m_Name: pb_Mesh42070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2193,7 +2223,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25212
+  m_Name: pb_Mesh41898
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8873,6 +8903,7 @@ GameObject:
   - component: {fileID: 410065772}
   - component: {fileID: 410065773}
   - component: {fileID: 410065774}
+  - component: {fileID: 410065775}
   m_Layer: 0
   m_Name: PISTOL
   m_TagString: Untagged
@@ -8974,13 +9005,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &410065775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410065771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7c737e655bd3a4ebc79955e51e940c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  gunPivot: {fileID: 0}
+  anim: {fileID: 0}
+  id: 0
+  curIdleSpeed: 0
+  curIdlePower: 0
+  curSprintSpeed: 0
+  curSprintPower: 0
+  intensity: 0
+  smooth: 0
+  defaultPos: {x: 0, y: 0, z: 0}
+  aimingPos: {x: 0, y: 0, z: 0}
+  movementAimPosSeed: 0
+  aimFieldOfView: 0
+  defaultFov: 0
+  isAiming: 0
+  fireRate: 0
 --- !u!43 &412874740
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24754
+  m_Name: pb_Mesh41436
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11704,7 +11764,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25398
+  m_Name: pb_Mesh42084
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12817,7 +12877,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25338
+  m_Name: pb_Mesh42024
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15064,7 +15124,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25238
+  m_Name: pb_Mesh41924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19329,7 +19389,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24688
+  m_Name: pb_Mesh41370
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22629,7 +22689,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25552
+  m_Name: pb_Mesh42238
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22793,7 +22853,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25352
+  m_Name: pb_Mesh42038
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
