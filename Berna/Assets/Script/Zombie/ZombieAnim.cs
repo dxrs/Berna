@@ -5,17 +5,18 @@ using UnityEngine;
 public class ZombieAnim : MonoBehaviour
 {
     public Animator anim;
+    public static bool isAttack = false;
 
     void Update()
     {
-        anim.SetFloat("Speed",ZombieAi.velo, 0.1f, Time.deltaTime);
-        if(ZombieAi.attak == "serang")
+        if(!isAttack)
         {
-            animAttack();
+            anim.SetFloat("Speed",ZombieAi.velo, 0.1f, Time.deltaTime);
+            anim.SetBool("att",false);
         }
         else
         {
-            anim.SetBool("att",false);
+            anim.SetBool("att",true);
         }
     }
 

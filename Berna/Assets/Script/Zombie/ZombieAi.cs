@@ -33,9 +33,6 @@ public class ZombieAi : MonoBehaviour
 
     //attack
     public static string attak;
-    float timer = 3;
-    [SerializeField]
-    float timeToAttack;
 
 
 
@@ -53,8 +50,6 @@ public class ZombieAi : MonoBehaviour
     void Start()
     {
         meshRender =GetComponentInChildren<SkinnedMeshRenderer>();
-
-        timeToAttack = timer;
     }
 
     void Update()
@@ -76,16 +71,17 @@ public class ZombieAi : MonoBehaviour
         if(!playerInRange && !playerInAttackRange)
         {
             patroling();
+            ZombieAnim.isAttack = false;
         }
         if(playerInRange && !playerInAttackRange)
         {
             chasing();
-            attak = "dunno";
+            ZombieAnim.isAttack = false;
         }
         if(playerInRange && playerInAttackRange)
         {
             attack();
-            
+            ZombieAnim.isAttack = true;
         }
     }
 
@@ -138,11 +134,10 @@ public class ZombieAi : MonoBehaviour
     {
         agent.updateRotation = false;
         FaceTarget(player.position);
-        attak = "serang";
         
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected() // buat ngatur masalah range
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightRange);
@@ -162,11 +157,6 @@ public class ZombieAi : MonoBehaviour
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 2*Time.deltaTime);  
-    }
-
-    void attackDemage(float dmg)
-    {
-        PlayerDestroy.playerCurrentHealth -= dmg;
     }
     
 }
