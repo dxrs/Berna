@@ -6,8 +6,8 @@ public class GunAiming : MonoBehaviour
 {
     public static GunAiming gunAiming;
 
-    Vector3 curPos = new Vector3(0.341f, -0.245f, -0.24f);
-    Vector3 targetPos = new Vector3(0f, -0.081f, -0.225f);
+    [SerializeField] Vector3[] curPos;
+    [SerializeField] Vector3[] targetPos;
 
     [SerializeField] float moveSpeed;
 
@@ -23,21 +23,37 @@ public class GunAiming : MonoBehaviour
         if (Input.GetMouseButton(1)) 
         {
             isAiming = true;
-            //transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, moveSpeed * Time.deltaTime);
         }
         if (Input.GetMouseButtonUp(1)) 
         {
             isAiming = false;
-           // transform.localPosition = Vector3.Lerp(targetPos, transform.localPosition, moveSpeed * Time.deltaTime);
         }
 
         if (isAiming) 
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, moveSpeed * Time.deltaTime);
+            if (PlayerShoot.playerShoot.id == "SMG") 
+            
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos[0], moveSpeed * Time.deltaTime);
+            }
+            if(PlayerShoot.playerShoot.id == "PISTOL") 
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos[1], moveSpeed * Time.deltaTime);
+            }
+           
         }
         else 
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, curPos, moveSpeed * Time.deltaTime);
+            if (PlayerShoot.playerShoot.id == "SMG") 
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, curPos[0], moveSpeed * Time.deltaTime);
+            }
+            if(PlayerShoot.playerShoot.id == "PISTOL") 
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, curPos[1], moveSpeed * Time.deltaTime);
+            }
+
+            
         }
     }
 }

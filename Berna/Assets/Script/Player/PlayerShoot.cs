@@ -7,16 +7,23 @@ public class PlayerShoot : MonoBehaviour
 
     public static PlayerShoot playerShoot;
 
-    public float dmg = 10;
-    public float range = 100;
+    public float gunDamage; 
+    public float range = 100; 
 
     public bool playerIsShooting;
 
     public Camera fpsCam;
 
-    public ParticleSystem pa;
+  
     public ParticleSystem particleHit;
     public Animator shootAnimator;
+
+    public string id;
+
+    [Header("fire rate")]
+    public float fireRate;
+
+    float lastShootTime;
 
 
     private void Awake()
@@ -27,36 +34,70 @@ public class PlayerShoot : MonoBehaviour
     private void Update()
     {
 
-        
-        if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
+        if (id == "SMG") 
         {
-            shoot();
-            shootAnimator.SetTrigger("shot"); // ini shoot nya 
-            playerIsShooting = true;
-        }
+            if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
+            {
+                //Raycasthoot();
+                Shoot();
+                shootAnimator.SetTrigger("shot"); // ini shoot nya 
+                playerIsShooting = true;
+            }
 
-        if (Input.GetMouseButtonUp(0)) 
+            if (Input.GetMouseButtonUp(0))
+            {
+                playerIsShooting = false;
+            }
+        }
+        if (id == "PISTOL") 
         {
-            playerIsShooting = false;
-        }
-         
+            if (Input.GetMouseButton(0)) 
+            {
+                Shoot();
+                shootAnimator.SetTrigger("PistolShoot");
+                playerIsShooting = true;
+            }
 
-       
+            if (Input.GetMouseButtonUp(0))
+            {
+            
+                playerIsShooting = false;
+            }
+        }
      
     }
-    void shoot()
+    void Shoot()
     {
-        pa.Play();
-        //particleHit.Play();
+        if (playerIsShooting)
+        {
+            if (Time.time > lastShootTime + fireRate)
+            {
+                Debug.Log("kena");
+                lastShootTime = Time.time;
+                rayCasthoot();
+
+            }
+        }
+        else
+        {
+            rayCasthoot();
+        }
+
+    }
+    void rayCasthoot()
+    {
+        
+        particleHit.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
 
             TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
-            if(targetnya!= null) 
+            if (targetnya != null)
             {
-                targetnya.TakeDamage(dmg);
+                targetnya.TakeDamage(gunDamage);
+
             }
 
             if(hit.transform.tag == "Zombie")
@@ -65,11 +106,21 @@ public class PlayerShoot : MonoBehaviour
             }
 
             //nembak cubenya
-            if(hit.transform.tag == "Crane")
+            if (hit.transform.tag == "Crane")
             {
                 targetnya.craneShot();
             }
+
+
         }
+      
+        
     }
+
+   
+
+   
+
+   
 
 }
