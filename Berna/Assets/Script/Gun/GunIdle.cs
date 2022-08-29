@@ -7,10 +7,10 @@ public class GunIdle : MonoBehaviour
     public static GunIdle gunIdle;
 
     float curIdleSpeed= 2f;     
-    float curIdlePower= 0.0005f;
+    float curIdlePower= 0.0009f;
 
     float sprintSpeed=10f;
-    float sprintPower=0.0009f;
+    float sprintPower=0.009f;
 
     Vector3 pos;
 

@@ -24,13 +24,6 @@ public class ZombieAi : MonoBehaviour
     public float sightRange, attackRange;
     bool playerInRange, playerInAttackRange;
 
-
-    [Header("Hitted Effect")]
-    public float blinkIntensity;
-    public float blinkDuration;
-    float blinkTimer;
-    SkinnedMeshRenderer meshRender;
-
     //attack
     public static string attak;
 
@@ -49,20 +42,13 @@ public class ZombieAi : MonoBehaviour
 
     void Start()
     {
-        meshRender =GetComponentInChildren<SkinnedMeshRenderer>();
+        
     }
 
     void Update()
     {
         velo = agent.velocity.magnitude;
 
-        
-
-        //effect kena hit
-        blinkTimer -= Time.deltaTime;
-        float lerp = Mathf.Clamp01(blinkTimer/blinkDuration);
-        float intensity = lerp * blinkIntensity;
-        meshRender.material.color = Color.white * intensity;
 
         //Check sight rangernya
         playerInRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -144,11 +130,6 @@ public class ZombieAi : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
-
-    public static void shooted()
-    {
-        ZombieAi.instance.blinkTimer = ZombieAi.instance.blinkDuration;
     }
 
     private void FaceTarget(Vector3 destination)
