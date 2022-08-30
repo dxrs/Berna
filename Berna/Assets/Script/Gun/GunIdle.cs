@@ -43,7 +43,7 @@ public class GunIdle : MonoBehaviour
         if (PlayerMovement.playerMovement.isSprint
                && !GunAiming.gunAiming.isAiming
                && !PlayerShoot.playerShoot.playerIsShooting)
-        {
+        { 
             transform.position = pos + new Vector3(0.0f,
            Mathf.Sin(sprintSpeed * Time.time) * sprintPower,
            0.0f);
