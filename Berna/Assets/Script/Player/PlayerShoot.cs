@@ -15,7 +15,7 @@ public class PlayerShoot : MonoBehaviour
     public Camera fpsCam;
 
   
-    //public ParticleSystem particleHit;
+    public ParticleSystem particleHit;
     public Animator shootAnimator;
 
     public string id;
@@ -87,7 +87,7 @@ public class PlayerShoot : MonoBehaviour
     void rayCasthoot()
     {
         
-       // particleHit.Play();
+        particleHit.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
