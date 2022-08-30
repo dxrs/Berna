@@ -6,7 +6,7 @@ public class PlayerLook : MonoBehaviour
 {
    
 
-    public float sensitfitas; // sensitivity mouse
+    public float sensitivity; // sensitivity mouse
 
     [SerializeField] Transform playerBody;
 
@@ -20,8 +20,8 @@ public class PlayerLook : MonoBehaviour
 
     void lookAround() 
     {
-        float Mouse_x = Input.GetAxis("Mouse X") * sensitfitas * Time.deltaTime;
-        float Mouse_y = Input.GetAxis("Mouse Y") * sensitfitas * Time.deltaTime;
+        float Mouse_x = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        float Mouse_y = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
         xRot -= Mouse_y;
         xRot = Mathf.Clamp(xRot, -60, 60);
