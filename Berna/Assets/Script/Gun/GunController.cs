@@ -10,6 +10,8 @@ public class GunController : MonoBehaviour
     public Camera cam;
     public Transform gunPivot;
     public Animator anim;
+    public bool isPlayershot;
+    public ParticleSystem gunMuzzle;
 
     [Header("Gun ID")]
     [SerializeField]
@@ -17,6 +19,10 @@ public class GunController : MonoBehaviour
     [Range(0, 4)]
     public int id;
 
+
+    [Header("Gun Spec")]
+    [SerializeField] float shootRange;
+    [SerializeField] float gunDamage;
 
     [Header("Gun Idle")]
     [SerializeField] float curIdleSpeed;

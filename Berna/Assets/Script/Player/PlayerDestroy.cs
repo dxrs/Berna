@@ -16,6 +16,7 @@ public class PlayerDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(playerCurrentHealth);
         //demaged();
     }
 
