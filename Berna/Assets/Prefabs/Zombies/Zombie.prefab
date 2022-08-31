@@ -362,8 +362,6 @@ MonoBehaviour:
   walkPointRange: 10
   sightRange: 15
   attackRange: 3
-  blinkIntensity: 10
-  blinkDuration: 2
 --- !u!195 &5239961473940445554
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -576,6 +574,27 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: f5d39efd23d01b7428615ab9f6e01858, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8cd543f7b6d4c84aaf529c409a556a5, type: 3}
+--- !u!1 &853610576116706240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3090848061168836670, guid: f8cd543f7b6d4c84aaf529c409a556a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6828504163800871938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7375951282503998667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853610576116706240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada61dec20544564b86331311b196b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkIntensity: 5
+  blinkDuration: 0.2
+  getShot: 0
 --- !u!95 &1128483700604979603 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: f8cd543f7b6d4c84aaf529c409a556a5,

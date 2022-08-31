@@ -24,7 +24,7 @@ public class ZombieSpawner : MonoBehaviour
 
     IEnumerator spawner()
     {
-        while (zombieCount < 10)
+        while (zombieCount < 2)
         {
             posx = Random.Range(-96,93);
             posz = Random.Range(-96,91);

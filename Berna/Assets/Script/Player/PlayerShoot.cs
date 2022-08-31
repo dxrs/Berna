@@ -36,31 +36,29 @@ public class PlayerShoot : MonoBehaviour
 
         if (id == "SMG") 
         {
-            if (Input.GetMouseButton(0)) // jadi ini burst shot apa shot terus2an?
+            if (Input.GetMouseButtonDown(0)) // jadi ini burst shot apa shot terus2an?
             {
-                //Raycasthoot();
-                Shoot();
-                shootAnimator.SetTrigger("shot"); // ini shoot nya 
+                shootAnimator.SetBool("SMG_sht",true);
                 playerIsShooting = true;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
+                shootAnimator.SetBool("SMG_sht",false);
                 playerIsShooting = false;
             }
         }
         if (id == "PISTOL") 
         {
-            if (Input.GetMouseButton(0)) 
+            if (Input.GetMouseButtonDown(0)) 
             {
-                Shoot();
-                shootAnimator.SetTrigger("PistolShoot");
+                shootAnimator.SetBool("sht",true);
                 playerIsShooting = true;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-            
+                shootAnimator.SetBool("sht",false);
                 playerIsShooting = false;
             }
         }
@@ -72,7 +70,6 @@ public class PlayerShoot : MonoBehaviour
         {
             if (Time.time > lastShootTime + fireRate)
             {
-                Debug.Log("kena");
                 lastShootTime = Time.time;
                 rayCasthoot();
 
@@ -86,7 +83,7 @@ public class PlayerShoot : MonoBehaviour
     }
     void rayCasthoot()
     {
-        
+        AudioScript.instance.SMG_Sound();
         particleHit.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
@@ -100,9 +97,10 @@ public class PlayerShoot : MonoBehaviour
 
             }
 
+            Z_Hitted hitZombie = hit.transform.GetComponentInChildren<Z_Hitted>();
             if(hit.transform.tag == "Zombie")
             {
-                ZombieAi.shooted();
+                hitZombie.shooted();
             }
 
             //nembak cubenya
@@ -113,14 +111,5 @@ public class PlayerShoot : MonoBehaviour
 
 
         }
-      
-        
     }
-
-   
-
-   
-
-   
-
 }
