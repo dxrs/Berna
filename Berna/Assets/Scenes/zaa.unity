@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: 174569612}
   - component: {fileID: 174569614}
   - component: {fileID: 174569613}
+  - component: {fileID: 174569615}
   m_Layer: 0
   m_Name: SMG
   m_TagString: Untagged
@@ -1016,12 +1017,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDamage: 200
   range: 100
-  playerIsShooting: 1
+  playerIsShooting: 0
   fpsCam: {fileID: 1314289468}
   particleHit: {fileID: 905745010}
   shootAnimator: {fileID: 174569613}
   id: SMG
   fireRate: 0.5
+--- !u!114 &174569615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174569611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7c737e655bd3a4ebc79955e51e940c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  gunPivot: {fileID: 0}
+  anim: {fileID: 0}
+  isPlayershot: 0
+  gunMuzzle: {fileID: 0}
+  id: 0
+  shootRange: 0
+  gunDamage: 0
+  curIdleSpeed: 0
+  curIdlePower: 0
+  curSprintSpeed: 0
+  curSprintPower: 0
+  intensity: 0
+  smooth: 0
+  defaultPos: {x: 0, y: 0, z: 0}
+  aimingPos: {x: 0, y: 0, z: 0}
+  movementAimPosSeed: 0
+  aimFieldOfView: 0
+  defaultFov: 0
+  isAiming: 0
 --- !u!1 &176213857
 GameObject:
   m_ObjectHideFlags: 0
@@ -8874,6 +8907,7 @@ GameObject:
   - component: {fileID: 410065772}
   - component: {fileID: 410065773}
   - component: {fileID: 410065774}
+  - component: {fileID: 410065775}
   m_Layer: 0
   m_Name: PISTOL
   m_TagString: Untagged
@@ -8976,6 +9010,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &410065775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410065771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7c737e655bd3a4ebc79955e51e940c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  gunPivot: {fileID: 0}
+  anim: {fileID: 0}
+  isPlayershot: 0
+  gunMuzzle: {fileID: 0}
+  id: 0
+  shootRange: 0
+  gunDamage: 0
+  curIdleSpeed: 0
+  curIdlePower: 0
+  curSprintSpeed: 0
+  curSprintPower: 0
+  intensity: 0
+  smooth: 0
+  defaultPos: {x: 0, y: 0, z: 0}
+  aimingPos: {x: 0, y: 0, z: 0}
+  movementAimPosSeed: 0
+  aimFieldOfView: 0
+  defaultFov: 0
+  isAiming: 0
 --- !u!43 &412874740
 Mesh:
   m_ObjectHideFlags: 0
@@ -10504,7 +10570,7 @@ RectTransform:
   m_GameObject: {fileID: 648974353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_LocalScale: {x: -0.04, y: -0.04, z: -0.04}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 288237990}
@@ -12995,7 +13061,7 @@ GameObject:
   - component: {fileID: 1217243897}
   - component: {fileID: 1217243896}
   m_Layer: 7
-  m_Name: Player
+  m_Name: Player Controller
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -15307,7 +15373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e5375d5782a2a44874edd7dd6ee81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0
+  sensitivity: 600
   playerBody: {fileID: 1217243898}
 --- !u!81 &1314289470
 AudioListener:
@@ -15431,10 +15497,11 @@ GameObject:
   - component: {fileID: 1353475584}
   - component: {fileID: 1353475587}
   - component: {fileID: 1353475586}
+  - component: {fileID: 1353475588}
   - component: {fileID: 1353475585}
   m_Layer: 0
-  m_Name: Body
-  m_TagString: Untagged
+  m_Name: Player Body
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15518,6 +15585,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353475583}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1353475588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353475583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3e588782f564f4582f8a3fb94d2c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1372033297
 GameObject:
   m_ObjectHideFlags: 0
