@@ -88,6 +88,7 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
+            Debug.DrawLine(fpsCam.transform.position,hit.transform.position, Color.red);
             Debug.Log(hit.transform.name);
 
             TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
