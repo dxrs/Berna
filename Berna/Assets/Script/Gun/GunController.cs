@@ -178,7 +178,7 @@ public class GunController : MonoBehaviour
         float mouse_Y = Input.GetAxis("Mouse Y");
 
         Quaternion sway_X = Quaternion.AngleAxis(intensity * mouse_X, Vector3.up);
-        Quaternion sway_Y = Quaternion.AngleAxis(intensity * mouse_X, Vector3.right);
+        Quaternion sway_Y = Quaternion.AngleAxis(intensity * mouse_Y, Vector3.right);
         Quaternion targetRot = originRotPoint * sway_X * sway_Y;
 
         gunPivot.transform.localRotation = Quaternion.Lerp(gunPivot.transform.localRotation, targetRot, Time.deltaTime * smooth);
