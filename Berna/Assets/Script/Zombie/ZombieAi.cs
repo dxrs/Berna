@@ -43,7 +43,7 @@ public class ZombieAi : MonoBehaviour
             instance = this;
         }
 
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player Controller").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
