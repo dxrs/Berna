@@ -594,7 +594,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkIntensity: 5
   blinkDuration: 0.2
-  getShot: 0
 --- !u!95 &1128483700604979603 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: f8cd543f7b6d4c84aaf529c409a556a5,
