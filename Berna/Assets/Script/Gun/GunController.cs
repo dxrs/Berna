@@ -84,14 +84,14 @@ public class GunController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-            gunAnim.SetBool("SMG_sht", true);
+            gunAnim.SetBool("sht", true);
             isPlayershot = true;
         }
        
         
         if (Input.GetMouseButtonUp(0))
         {
-            gunAnim.SetBool("SMG_sht", false);
+            gunAnim.SetBool("sht", false);
             isPlayershot = false;
             
         }
@@ -128,15 +128,7 @@ public class GunController : MonoBehaviour
                 shootTarget.craneShot();
             }
 
-
-
         }
-        if (gunAnim.GetBool("SMG_sht") == true)
-        {
-          
-        }
-       
-
     }
 
     void gunAiming() 
