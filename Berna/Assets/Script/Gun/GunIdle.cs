@@ -19,7 +19,12 @@ public class GunIdle : MonoBehaviour
         if (gunIdle == null) { gunIdle = this; }
     }
 
-   
+
+    private void Start()
+    {
+        
+    }
+
 
     private void Update()
     {

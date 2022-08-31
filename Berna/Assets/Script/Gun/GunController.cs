@@ -64,12 +64,12 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     private void FixedUpdate()
     {
-        
+        gunIdle();
     }
 
     public void gunShoot()
@@ -80,6 +80,31 @@ public class GunController : MonoBehaviour
     void rayCastHitShoot()
     {
 
+    }
+
+    void gunIdle() 
+    {
+        pos = gunPivot.transform.position;
+
+        // idle pas diem
+        if(!isPlayershot&&
+            !isAiming&&
+            !PlayerMovement.playerMovement.isSprint) 
+        {
+            gunPivot.transform.position = pos + new Vector3(0.0f,
+                Mathf.Sin(curIdleSpeed * Time.time) * curIdlePower,
+                0.0f);
+        }
+
+        //idle pas sprint
+        if(!isPlayershot&&
+            !isAiming
+            && PlayerMovement.playerMovement.isSprint) 
+        {
+            gunPivot.transform.position = pos + new Vector3(0.0f,
+               Mathf.Sin(curSprintSpeed * Time.time) * curSprintPower,
+               0.0f);
+        }
     }
 
 

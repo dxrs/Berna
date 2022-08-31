@@ -64,23 +64,7 @@ public class PlayerShoot : MonoBehaviour
         }
      
     }
-    void Shoot()
-    {
-        if (playerIsShooting)
-        {
-            if (Time.time > lastShootTime + fireRate)
-            {
-                lastShootTime = Time.time;
-                rayCasthoot();
-
-            }
-        }
-        else
-        {
-            rayCasthoot();
-        }
-
-    }
+   
     void rayCasthoot()
     {
         AudioScript.instance.SMG_Sound();
