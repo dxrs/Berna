@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isMoving;
     public bool isSprint;
     public bool isPlayerWalk;
+    public bool isInGround;
 
     [SerializeField] float walkSpeed;
     [SerializeField] float gravity = -9.81f;
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController characterController;
 
-    bool isInGround;
+    
 
     Vector3 velocity;
     private void Awake()
@@ -133,20 +134,20 @@ public class PlayerMovement : MonoBehaviour
         //utk movement aiming msh atomatis pelan
         // pgnnya di buat sperti valorant
 
-        if (GunAiming.gunAiming.isAiming && !isSprint) 
+        if (GunController.gunController.isAiming && !isSprint) 
         {
             walkSpeed = 3;
         }
-        else if (!GunAiming.gunAiming.isAiming && isSprint)
+        else if (!GunController.gunController.isAiming && isSprint)
         {
             walkSpeed=8.2f;
         }
 
-        else if(GunAiming.gunAiming.isAiming && isSprint)
+        else if(GunController.gunController.isAiming && isSprint)
         {
             walkSpeed = 3;
         }
-        else if(!GunAiming.gunAiming.isAiming && !isSprint) 
+        else if(!GunController.gunController.isAiming && !isSprint) 
         {
             walkSpeed = 6;
         }

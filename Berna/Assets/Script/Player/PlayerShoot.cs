@@ -70,11 +70,13 @@ public class PlayerShoot : MonoBehaviour
         AudioScript.instance.SMG_Sound();
         particleHit.Play();
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, 
+            fpsCam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
 
-            TargetObjectRaycast targetnya = hit.transform.GetComponent<TargetObjectRaycast>();
+            TargetObjectRaycast targetnya = 
+                hit.transform.GetComponent<TargetObjectRaycast>();
             if (targetnya != null)
             {
                 targetnya.TakeDamage(gunDamage);
