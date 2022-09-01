@@ -69,13 +69,14 @@ public class GunController : MonoBehaviour
         gunShoot();
         gunSway();
         gunAiming();
-        gunIdle(); // sementara
+        gunIdleAnim(); // sementara
     }
 
     private void FixedUpdate()
     {
         // gun idleSpeed jika di panggil di sini ada bug klo nilainya smkin rendah
         //gunIdle(); 
+        gunSprintAnim();
     }
 
     public void gunShoot()
@@ -184,12 +185,12 @@ public class GunController : MonoBehaviour
         gunPivot.transform.localRotation = Quaternion.Lerp(gunPivot.transform.localRotation, targetRot, Time.deltaTime * smooth);
     }
 
-    void gunIdle()  //--> bakal di tambah pas player jalan(tidak sprint)
+    void gunIdleAnim()  //--> bakal di tambah pas player jalan(tidak sprint)
     {
         pos = gunPivot.transform.position;
 
         // idle pas diem
-        if(!isPlayershot&&
+        if (!isPlayershot&&
             !isAiming&&
             !PlayerMovement.playerMovement.isSprint&&
              PlayerMovement.playerMovement.isInGround) 
@@ -199,11 +200,17 @@ public class GunController : MonoBehaviour
                 0.0f);
         }
 
-        //idle pas sprint
-        if(!isPlayershot&&
+       
+    }
+
+    void gunSprintAnim() 
+    {
+        pos = gunPivot.transform.position;
+        //pas sprint
+        if (!isPlayershot &&
             !isAiming
-            && PlayerMovement.playerMovement.isSprint&&
-             PlayerMovement.playerMovement.isInGround) 
+            && PlayerMovement.playerMovement.isSprint &&
+             PlayerMovement.playerMovement.isInGround)
         {
             gunPivot.transform.position = pos + new Vector3(0.0f,
                Mathf.Sin(curSprintSpeed * Time.time) * curSprintPower,

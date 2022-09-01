@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TargetObjectRaycast : MonoBehaviour
 {
+
+
     public float nyawa = 50f;
     float MaxNyawaZombie = 100;
 
@@ -15,6 +17,7 @@ public class TargetObjectRaycast : MonoBehaviour
     [Header("Zombie")]
     public Image BarImage;
 
+  
     void Update()
     {
         zombieHealth();
@@ -35,7 +38,10 @@ public class TargetObjectRaycast : MonoBehaviour
     {
         if(BarImage == null)
         {
+            
             return;
+
+            
         }
         else
         {

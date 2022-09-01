@@ -8392,8 +8392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombies: {fileID: 7223705086316267707, guid: 8771c34def663384aadbc841f54bcdc0, type: 3}
-  posz: 0
-  posx: 0
+  posz: 10
+  posx: 12
+  zombieCount: 0
 --- !u!114 &306225383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11206,11 +11207,11 @@ MonoBehaviour:
   gunMuzzle: {fileID: 778024296}
   id: 0
   shootRange: 100
-  gunDamage: 200
-  curIdleSpeed: 2
+  gunDamage: 300
+  curIdleSpeed: 3
   curIdlePower: 0.0009
   curSprintSpeed: 10
-  curSprintPower: 0.0009
+  curSprintPower: 0.009
   intensity: 2
   smooth: 10
   isAiming: 0
@@ -13452,7 +13453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e5375d5782a2a44874edd7dd6ee81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 600
+  sensitivity: 800
   playerBody: {fileID: 1131950397}
 --- !u!81 &1223034104
 AudioListener:
