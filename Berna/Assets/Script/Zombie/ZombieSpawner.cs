@@ -31,7 +31,7 @@ public class ZombieSpawner : MonoBehaviour
     IEnumerator spawner()
     {
         
-        while (zombieCount < 20)
+        while (zombieCount < 2)
         {
 
 

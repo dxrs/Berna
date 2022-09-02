@@ -51,7 +51,9 @@ public class GunController : MonoBehaviour
     [SerializeField] float aimFov;
     [Tooltip("default fov pas lagi tidak aim")]
     [SerializeField] float defaultFov;
-    
+
+   
+
 
     private void Awake()
     {
@@ -61,6 +63,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         originRotPoint = gunPivot.transform.localRotation;
+        
     }
 
 
@@ -69,22 +72,27 @@ public class GunController : MonoBehaviour
         gunShoot();
         gunSway();
         gunAiming();
-        gunIdleAnim(); // sementara
+        gunMovmenentAnim(); // sementara
+       
+        if (isPlayershot) 
+        {
+            
+        }
     }
 
     private void FixedUpdate()
     {
         // gun idleSpeed jika di panggil di sini ada bug klo nilainya smkin rendah
         //gunIdle(); 
-        gunSprintAnim();
+        
     }
-
+    
     public void gunShoot()
     {
         
         if (Input.GetMouseButtonDown(0))
         {
-
+           
             gunAnim.SetBool("sht", true);
             isPlayershot = true;
         }
@@ -100,6 +108,7 @@ public class GunController : MonoBehaviour
 
     void rayCastHitShoot()
     {
+        //Recoil_Fire();
         AudioScript.instance.SMG_Sound();
         gunMuzzle.Play();
         RaycastHit hit;
@@ -185,7 +194,7 @@ public class GunController : MonoBehaviour
         gunPivot.transform.localRotation = Quaternion.Lerp(gunPivot.transform.localRotation, targetRot, Time.deltaTime * smooth);
     }
 
-    void gunIdleAnim()  //--> bakal di tambah pas player jalan(tidak sprint)
+    void gunMovmenentAnim()  //--> bakal di tambah pas player jalan(tidak sprint)
     {
         pos = gunPivot.transform.position;
 
@@ -199,24 +208,19 @@ public class GunController : MonoBehaviour
                 Mathf.Sin(curIdleSpeed * Time.time) * curIdlePower,
                 0.0f);
         }
-
-       
-    }
-
-    void gunSprintAnim() 
-    {
-        pos = gunPivot.transform.position;
-        //pas sprint
         if (!isPlayershot &&
-            !isAiming
-            && PlayerMovement.playerMovement.isSprint &&
-             PlayerMovement.playerMovement.isInGround)
+           !isAiming
+           && PlayerMovement.playerMovement.isSprint &&
+            PlayerMovement.playerMovement.isInGround)
         {
             gunPivot.transform.position = pos + new Vector3(0.0f,
                Mathf.Sin(curSprintSpeed * Time.time) * curSprintPower,
                0.0f);
         }
+
     }
+
+    
 
 
 }
