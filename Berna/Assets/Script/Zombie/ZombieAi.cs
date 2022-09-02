@@ -139,5 +139,6 @@ public class ZombieAi : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 2*Time.deltaTime);  
     }
-    
+   
+
 }

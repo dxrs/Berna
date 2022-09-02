@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-
+    public static ZombieSpawner zombieSpawner;
     public GameObject zombies;
     public float posz;
     public float posx;
 
-    int zombieCount;
+    public int zombieCount;
+
+    private void Awake()
+    {
+        zombieSpawner = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-         StartCoroutine(spawner());
+        
+        StartCoroutine(spawner());
     }
 
     // Update is called once per frame
@@ -24,17 +30,22 @@ public class ZombieSpawner : MonoBehaviour
 
     IEnumerator spawner()
     {
+        
         while (zombieCount < 2)
         {
-            posx = Random.Range(-96,93);
-            posz = Random.Range(-96,91);
-            if(posx<7 || posx>14 || posz<7 || posz>14)
+
+
+            posx = Random.Range(-96, 93);
+            posz = Random.Range(-96, 91);
+            if (posx<7 || posx>14 || posz<7 || posz>14)
             {
-                Instantiate(zombies,new Vector3(posx,0.5f,posz),Quaternion.identity);
-                yield return new WaitForSeconds(0.5f);
+                Instantiate(zombies, new Vector3(posx, 0.5f, posz), Quaternion.identity);
+                yield return new WaitForSeconds(0.1f);
+                
                 zombieCount += 1;
+               
             }
-            
+            //yield return null;
         }
     }
 }
