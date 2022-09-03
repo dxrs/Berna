@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     public bool isPlayershot;
     public ParticleSystem gunMuzzle;
 
-    [Header("Gun ID")]
+    [Header("Gun ID")] //--> bakal kepake nanti
     [SerializeField]
     [Tooltip("ID senjata nanti di panggil ke playerGun samakan nilai array yang di playerGun untuk swap weapon")]
     [Range(0, 4)]
@@ -57,7 +57,7 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
-        gunController = this;
+        if (gunController == null) gunController = this;
     }
 
     private void Start()

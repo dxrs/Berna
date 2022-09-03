@@ -12,6 +12,7 @@ TagManager:
   - Blocks
   - Crane
   - Zombie
+  - CinemachineCamTarget
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - UI
   - TestGround
   - Player
-  - 
-  - 
-  - 
+  - Character
+  - Grounded
+  - WeaponPickUp
   - 
   - 
   - 

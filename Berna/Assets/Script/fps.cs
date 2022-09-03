@@ -24,6 +24,7 @@ public class fps : MonoBehaviour
     }
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             if (Cursor.visible) 
@@ -33,6 +34,7 @@ public class fps : MonoBehaviour
             }
             
         }
+        
 
         time += Time.deltaTime;
 
