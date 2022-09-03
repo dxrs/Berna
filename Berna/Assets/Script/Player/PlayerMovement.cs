@@ -133,24 +133,27 @@ public class PlayerMovement : MonoBehaviour
 
         //utk movement aiming msh atomatis pelan
         // pgnnya di buat sperti valorant
+        if (GunController.gunController != null) 
+        {
+            if (GunController.gunController.isAiming && !isSprint)
+            {
+                walkSpeed = 3;
+            }
+            else if (!GunController.gunController.isAiming && isSprint)
+            {
+                walkSpeed = 8.2f;
+            }
 
-        if (GunController.gunController.isAiming && !isSprint) 
-        {
-            walkSpeed = 3;
+            else if (GunController.gunController.isAiming && isSprint)
+            {
+                walkSpeed = 3;
+            }
+            else if (!GunController.gunController.isAiming && !isSprint)
+            {
+                walkSpeed = 6;
+            }
         }
-        else if (!GunController.gunController.isAiming && isSprint)
-        {
-            walkSpeed=8.2f;
-        }
-
-        else if(GunController.gunController.isAiming && isSprint)
-        {
-            walkSpeed = 3;
-        }
-        else if(!GunController.gunController.isAiming && !isSprint) 
-        {
-            walkSpeed = 6;
-        }
+       
        
        
 

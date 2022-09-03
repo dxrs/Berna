@@ -8,7 +8,7 @@ public class PlayerLook : MonoBehaviour
     public static PlayerLook playerLook;
     public float sensitivity; // sensitivity mouse
 
-    [SerializeField] Transform cam;
+    [SerializeField] Transform playerController;
 
     float xRot = 0f;
     
@@ -34,9 +34,9 @@ public class PlayerLook : MonoBehaviour
 
         xRot -= Mouse_y;
         xRot = Mathf.Clamp(xRot, -60, 60);
-        transform.rotation = Quaternion.Euler(xRot, 0, 0);
+        transform.localRotation = Quaternion.Euler(xRot, 0, 0);
 
-        cam.Rotate(Vector3.up * Mouse_x);
+        playerController.Rotate(Vector3.up * Mouse_x);
     }
 
    

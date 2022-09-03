@@ -57,7 +57,7 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
-        gunController = this;
+        if (gunController == null) gunController = this;
     }
 
     private void Start()
