@@ -20,6 +20,7 @@ public class ColorChecker : MonoBehaviour
     {
         if(col.gameObject.name == this.gameObject.name)
         {
+            
             StartCoroutine(startDestroying(col.gameObject));
         }
     }
@@ -31,6 +32,15 @@ public class ColorChecker : MonoBehaviour
             yield return new WaitForSeconds(1);
             Destroy(this.gameObject);
             Destroy(objnya.gameObject);
+            
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (gameObject == null) 
+        {
+            GunController.gunController.curAmmo++;
         }
     }
 

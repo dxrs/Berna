@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GunController : MonoBehaviour
 {
     public static GunController gunController;
@@ -23,6 +23,10 @@ public class GunController : MonoBehaviour
     [Header("Gun Spec")]
     [SerializeField] float shootRange;
     [SerializeField] float gunDamage;
+    [SerializeField] TextMeshProUGUI tmp_curAmmo;
+    public int curAmmo;
+    public int gunAmmo;
+
 
     [Header("Gun Idle")]
     [SerializeField] float curIdleSpeed;
@@ -58,26 +62,36 @@ public class GunController : MonoBehaviour
     private void Awake()
     {
         if (gunController == null) gunController = this;
+        
     }
 
     private void Start()
     {
+       
         originRotPoint = gunPivot.transform.localRotation;
+        curAmmo = gunAmmo;
         
     }
 
 
     private void Update()
     {
+        
+
+        if (!PlayerGuns.playerGuns.fakeWeapon[0].activeSelf) 
+        {
+            tmp_curAmmo.text = "SMG : " + curAmmo;
+        }
+        if (!PlayerGuns.playerGuns.fakeWeapon[1].activeSelf) 
+        {
+            tmp_curAmmo.text = "Pistol : " + curAmmo;
+        }
         gunShoot();
         gunSway();
         gunAiming();
         gunMovmenentAnim(); // sementara
        
-        if (isPlayershot) 
-        {
-            
-        }
+        
     }
 
     private void FixedUpdate()
@@ -92,13 +106,15 @@ public class GunController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
-           
+            
             gunAnim.SetBool("sht", true);
             isPlayershot = true;
+
+           
         }
        
         
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || curAmmo==0)
         {
             gunAnim.SetBool("sht", false);
             isPlayershot = false;
@@ -108,7 +124,13 @@ public class GunController : MonoBehaviour
 
     void rayCastHitShoot()
     {
-        //Recoil_Fire();
+
+        
+        if (curAmmo > 0) 
+        {
+            curAmmo--;
+        }
+        else if (curAmmo <= 0) { curAmmo = 0; }
         AudioScript.instance.SMG_Sound();
         gunMuzzle.Play();
         RaycastHit hit;
@@ -117,6 +139,7 @@ public class GunController : MonoBehaviour
          out hit,
          shootRange))
         {
+           
             Debug.DrawLine(cam.transform.position, hit.transform.position, Color.red);
             Debug.Log(hit.transform.name);
             TargetObjectRaycast shootTarget =
@@ -194,7 +217,9 @@ public class GunController : MonoBehaviour
         gunPivot.transform.localRotation = Quaternion.Lerp(gunPivot.transform.localRotation, targetRot, Time.deltaTime * smooth);
     }
 
-    void gunMovmenentAnim()  //--> bakal di tambah pas player jalan(tidak sprint)
+    //--> bakal di tambah pas player jalan(tidak sprint)
+    //--> pke animasi aja
+    void gunMovmenentAnim()  
     {
         pos = gunPivot.transform.position;
 
@@ -219,8 +244,16 @@ public class GunController : MonoBehaviour
         }
 
     }
+    private void OnEnable()
+    {
+        curAmmo = gunAmmo;
+        
+    }
+    private void OnDisable()
+    {
+        
+    }
 
-    
 
 
 }
