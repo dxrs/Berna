@@ -6,7 +6,8 @@ public class ColorChecker : MonoBehaviour
 {
     [SerializeField] bool test;
 
-    // Update is called once per frame
+    //konflik
+    // peluru +2
     void Update()
     {
        
