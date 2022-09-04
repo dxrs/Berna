@@ -9,10 +9,7 @@ public class ColorChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (test) 
-        {
-            Destroy(gameObject);
-        }
+       
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -35,14 +32,33 @@ public class ColorChecker : MonoBehaviour
     IEnumerator startDestroying(GameObject objnya)
     {
         
+        //StartCoroutine(blok());
         while (true)
         {
             yield return new WaitForSeconds(1);
-            test = true;
+            
+            Destroy(gameObject);
             Destroy(objnya.gameObject);
             
+
         }
+        
     }
+    /*
+    IEnumerator blok()
+    {
+        test = true;
+        if (test)
+        {
+            
+            GunController.gunController.curAmmo++;
+            yield return new WaitForSeconds(0.0001f);
+            test = false;
+
+        }
+
+    }
+    */
 
     private void OnDestroy()
     {
