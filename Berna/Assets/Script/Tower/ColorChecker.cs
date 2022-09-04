@@ -4,34 +4,50 @@ using UnityEngine;
 
 public class ColorChecker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] bool test;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (test) 
+        {
+            Destroy(gameObject);
+        }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == gameObject.name) 
+        {
+            
+            
+        }
+    }
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.name == this.gameObject.name)
         {
             StartCoroutine(startDestroying(col.gameObject));
+
         }
     }
+    
 
     IEnumerator startDestroying(GameObject objnya)
     {
+        
         while (true)
         {
             yield return new WaitForSeconds(1);
-            Destroy(this.gameObject);
+            test = true;
             Destroy(objnya.gameObject);
+            
         }
+    }
+
+    private void OnDestroy()
+    {
+
+        if (test) { GunController.gunController.curAmmo++; }
     }
 
 }
