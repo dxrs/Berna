@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class ColorChecker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] bool test;
+    
 
-    // Update is called once per frame
+    //konflik
+    // peluru +2
     void Update()
     {
-        
+       
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="Block Ground") 
+        {
+            print("kena");
+            test = true;
+        }
+    }
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.name == this.gameObject.name)
@@ -23,15 +28,23 @@ public class ColorChecker : MonoBehaviour
             StartCoroutine(startDestroying(col.gameObject));
         }
     }
+    
 
     IEnumerator startDestroying(GameObject objnya)
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             Destroy(objnya.gameObject);
+            GunController.gunController.curAmmo++;
         }
+    }
+
+    private void OnDestroy()
+    {
+
+        if (test) {  }
     }
 
 }

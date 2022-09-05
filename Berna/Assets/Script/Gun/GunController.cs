@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GunController : MonoBehaviour
 {
     public static GunController gunController;
@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     public bool isPlayershot;
     public ParticleSystem gunMuzzle;
 
-    [Header("Gun ID")]
+    [Header("Gun ID")] //--> bakal kepake nanti
     [SerializeField]
     [Tooltip("ID senjata nanti di panggil ke playerGun samakan nilai array yang di playerGun untuk swap weapon")]
     [Range(0, 4)]
@@ -23,6 +23,10 @@ public class GunController : MonoBehaviour
     [Header("Gun Spec")]
     [SerializeField] float shootRange;
     [SerializeField] float gunDamage;
+    [SerializeField] TextMeshProUGUI tmp_curAmmo;
+    public int curAmmo;
+    public int gunAmmo;
+
 
     [Header("Gun Idle")]
     [SerializeField] float curIdleSpeed;
@@ -51,46 +55,66 @@ public class GunController : MonoBehaviour
     [SerializeField] float aimFov;
     [Tooltip("default fov pas lagi tidak aim")]
     [SerializeField] float defaultFov;
-    
+
+   
+
 
     private void Awake()
     {
-        gunController = this;
+        if (gunController == null) gunController = this;
+        
     }
 
     private void Start()
     {
+       
         originRotPoint = gunPivot.transform.localRotation;
+        curAmmo = gunAmmo;
+        
     }
 
 
     private void Update()
     {
+        
+
+        if (!PlayerGuns.playerGuns.fakeWeapon[0].activeSelf) 
+        {
+            tmp_curAmmo.text = "SMG : " + curAmmo;
+        }
+        if (!PlayerGuns.playerGuns.fakeWeapon[1].activeSelf) 
+        {
+            tmp_curAmmo.text = "Pistol : " + curAmmo;
+        }
         gunShoot();
         gunSway();
         gunAiming();
-        gunIdle(); // sementara
+        gunMovmenentAnim(); // sementara
+       
+        
     }
 
     private void FixedUpdate()
     {
         // gun idleSpeed jika di panggil di sini ada bug klo nilainya smkin rendah
         //gunIdle(); 
-        //gausah pake ini, kan udah pake animasi
+        
     }
-
+    
     public void gunShoot()
     {
         
         if (Input.GetMouseButtonDown(0))
         {
-
+            
             gunAnim.SetBool("sht", true);
             isPlayershot = true;
+
+           
         }
        
         
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || curAmmo==0)
         {
             gunAnim.SetBool("sht", false);
             isPlayershot = false;
@@ -100,6 +124,13 @@ public class GunController : MonoBehaviour
 
     void rayCastHitShoot()
     {
+
+        
+        if (curAmmo > 0) 
+        {
+            curAmmo--;
+        }
+        else if (curAmmo <= 0) { curAmmo = 0; }
         AudioScript.instance.SMG_Sound();
         gunMuzzle.Play();
         RaycastHit hit;
@@ -108,6 +139,7 @@ public class GunController : MonoBehaviour
          out hit,
          shootRange))
         {
+           
             Debug.DrawLine(cam.transform.position, hit.transform.position, Color.red);
             Debug.Log(hit.transform.name);
             TargetObjectRaycast shootTarget =
@@ -118,11 +150,9 @@ public class GunController : MonoBehaviour
             }
 
             Z_Hitted hitZombie = hit.transform.GetComponentInChildren<Z_Hitted>();
-            ZombieAi Z_Ai = hit.transform.GetComponentInChildren<ZombieAi>();
             if (hit.transform.tag == "Zombie")
             {
                 hitZombie.shooted();
-                Z_Ai.diSerang = true;
             }
 
             //nembak cubenya
@@ -187,12 +217,14 @@ public class GunController : MonoBehaviour
         gunPivot.transform.localRotation = Quaternion.Lerp(gunPivot.transform.localRotation, targetRot, Time.deltaTime * smooth);
     }
 
-    void gunIdle()  //--> bakal di tambah pas player jalan(tidak sprint)
+    //--> bakal di tambah pas player jalan(tidak sprint)
+    //--> pke animasi aja
+    void gunMovmenentAnim()  
     {
         pos = gunPivot.transform.position;
 
         // idle pas diem
-        if(!isPlayershot&&
+        if (!isPlayershot&&
             !isAiming&&
             !PlayerMovement.playerMovement.isSprint&&
              PlayerMovement.playerMovement.isInGround) 
@@ -201,18 +233,27 @@ public class GunController : MonoBehaviour
                 Mathf.Sin(curIdleSpeed * Time.time) * curIdlePower,
                 0.0f);
         }
-
-        //idle pas sprint
-        if(!isPlayershot&&
-            !isAiming
-            && PlayerMovement.playerMovement.isSprint&&
-             PlayerMovement.playerMovement.isInGround) 
+        if (!isPlayershot &&
+           !isAiming
+           && PlayerMovement.playerMovement.isSprint &&
+            PlayerMovement.playerMovement.isInGround)
         {
             gunPivot.transform.position = pos + new Vector3(0.0f,
                Mathf.Sin(curSprintSpeed * Time.time) * curSprintPower,
                0.0f);
         }
+
     }
+    private void OnEnable()
+    {
+        curAmmo = gunAmmo;
+        
+    }
+    private void OnDisable()
+    {
+        
+    }
+
 
 
 }
