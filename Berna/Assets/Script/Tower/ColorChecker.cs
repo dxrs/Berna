@@ -26,46 +26,25 @@ public class ColorChecker : MonoBehaviour
         if(col.gameObject.name == this.gameObject.name)
         {
             StartCoroutine(startDestroying(col.gameObject));
-
         }
     }
     
 
     IEnumerator startDestroying(GameObject objnya)
     {
-        
-        //StartCoroutine(blok());
         while (true)
         {
-            yield return new WaitForSeconds(10);
-            
+            yield return new WaitForSeconds(1);
             Destroy(gameObject);
             Destroy(objnya.gameObject);
-            
-
-        }
-        
-    }
-    /*
-    IEnumerator blok()
-    {
-        test = true;
-        if (test)
-        {
-            
             GunController.gunController.curAmmo++;
-            yield return new WaitForSeconds(0.0001f);
-            test = false;
-
         }
-
     }
-    */
 
     private void OnDestroy()
     {
 
-        if (test) { GunController.gunController.curAmmo++; }
+        if (test) {  }
     }
 
 }
