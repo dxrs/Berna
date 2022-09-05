@@ -362,6 +362,7 @@ MonoBehaviour:
   walkPointRange: 10
   sightRange: 15
   attackRange: 3
+  diSerang: 0
 --- !u!195 &5239961473940445554
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -396,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc6ffc0db5191d4caa7b3adf2259cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nyawa: 50
+  nyawa: 100
   blockSpot: {fileID: 0}
   BarImage: {fileID: 4688674182529396710}
 --- !u!1 &7305540060511388774

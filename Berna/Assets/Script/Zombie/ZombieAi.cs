@@ -23,6 +23,7 @@ public class ZombieAi : MonoBehaviour
     //state
     public float sightRange, attackRange;
     bool playerInRange, playerInAttackRange;
+    public bool diSerang = false;
 
     //attack
     public static string attak;
@@ -68,6 +69,11 @@ public class ZombieAi : MonoBehaviour
         {
             attack();
             ZombieAnim.isAttack = true;
+        }
+        if(diSerang)
+        {
+            chasing();
+            ZombieAnim.isAttack = false;
         }
     }
 
@@ -120,6 +126,7 @@ public class ZombieAi : MonoBehaviour
     {
         agent.updateRotation = false;
         FaceTarget(player.position);
+        diSerang = false;
         
     }
 

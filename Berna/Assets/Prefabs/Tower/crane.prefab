@@ -300,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nyawa: 50
   blockSpot: {fileID: 6358860092435313597}
+  BarImage: {fileID: 0}
 --- !u!1 &3224046062669492033
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class ZombieSpawner : MonoBehaviour
     void Update()
     {
         print(zombieCount);
-        if(zombieCount < 2)
+        if(zombieCount < 10)
         {
             StartCoroutine(spawner());
         }

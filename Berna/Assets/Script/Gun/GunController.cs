@@ -76,6 +76,7 @@ public class GunController : MonoBehaviour
     {
         // gun idleSpeed jika di panggil di sini ada bug klo nilainya smkin rendah
         //gunIdle(); 
+        //gausah pake ini, kan udah pake animasi
     }
 
     public void gunShoot()
@@ -117,9 +118,11 @@ public class GunController : MonoBehaviour
             }
 
             Z_Hitted hitZombie = hit.transform.GetComponentInChildren<Z_Hitted>();
+            ZombieAi Z_Ai = hit.transform.GetComponentInChildren<ZombieAi>();
             if (hit.transform.tag == "Zombie")
             {
                 hitZombie.shooted();
+                Z_Ai.diSerang = true;
             }
 
             //nembak cubenya
