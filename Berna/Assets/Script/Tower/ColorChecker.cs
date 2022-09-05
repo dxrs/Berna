@@ -6,10 +6,15 @@ public class ColorChecker : MonoBehaviour
 {
     [SerializeField] bool test;
 
-    // Update is called once per frame
+    //konflik
+    // peluru +2
     void Update()
     {
+<<<<<<< HEAD
         StartCoroutine(blok());
+=======
+       
+>>>>>>> Zaa
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -32,15 +37,23 @@ public class ColorChecker : MonoBehaviour
     IEnumerator startDestroying(Collision objnya)
     {
         
+        //StartCoroutine(blok());
         while (true)
         {
             yield return new WaitForSeconds(1);
+<<<<<<< HEAD
             test = true;
+=======
+            
+>>>>>>> Zaa
             Destroy(gameObject);
             Destroy(objnya.gameObject);
             
+
         }
+        
     }
+<<<<<<< HEAD
     IEnumerator blok() 
     {
         if (test) 
@@ -53,6 +66,23 @@ public class ColorChecker : MonoBehaviour
         }
         
     }
+=======
+    /*
+    IEnumerator blok()
+    {
+        test = true;
+        if (test)
+        {
+            
+            GunController.gunController.curAmmo++;
+            yield return new WaitForSeconds(0.0001f);
+            test = false;
+
+        }
+
+    }
+    */
+>>>>>>> Zaa
 
     private void OnDestroy()
     {
