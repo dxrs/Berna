@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColorChecker : MonoBehaviour
 {
     [SerializeField] bool test;
+    
 
     //konflik
     // peluru +2
@@ -14,10 +15,10 @@ public class ColorChecker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == gameObject.name) 
+        if (other.gameObject.tag=="Block Ground") 
         {
-            
-            
+            print("kena");
+            test = true;
         }
     }
     void OnCollisionEnter(Collision col)
@@ -36,7 +37,7 @@ public class ColorChecker : MonoBehaviour
         //StartCoroutine(blok());
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(10);
             
             Destroy(gameObject);
             Destroy(objnya.gameObject);
