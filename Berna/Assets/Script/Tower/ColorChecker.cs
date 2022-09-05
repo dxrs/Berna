@@ -10,11 +10,7 @@ public class ColorChecker : MonoBehaviour
     // peluru +2
     void Update()
     {
-<<<<<<< HEAD
-        StartCoroutine(blok());
-=======
-       
->>>>>>> Zaa
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -41,11 +37,7 @@ public class ColorChecker : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-<<<<<<< HEAD
-            test = true;
-=======
-            
->>>>>>> Zaa
+
             Destroy(gameObject);
             Destroy(objnya.gameObject);
             
@@ -53,36 +45,7 @@ public class ColorChecker : MonoBehaviour
         }
         
     }
-<<<<<<< HEAD
-    IEnumerator blok() 
-    {
-        if (test) 
-        {
-            
-            GunController.gunController.curAmmo++;
-            yield return new WaitForSeconds(0.1f);
-            test = false;
-            
-        }
-        
-    }
-=======
-    /*
-    IEnumerator blok()
-    {
-        test = true;
-        if (test)
-        {
-            
-            GunController.gunController.curAmmo++;
-            yield return new WaitForSeconds(0.0001f);
-            test = false;
 
-        }
-
-    }
-    */
->>>>>>> Zaa
 
     private void OnDestroy()
     {
