@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using TMPro;
 
@@ -16,8 +17,12 @@ public class InGameUI : MonoBehaviour
     public float playerStamina=100f;
     [SerializeField] TextMeshProUGUI tmp_stamina;
 
-    [Header("Peluru")]
-    [SerializeField] TextMeshProUGUI tmp_gunAmmo;
+    [Header("Timer Counter")]
+    [SerializeField] TextMeshProUGUI tmp_timer;
+    [SerializeField] private bool isTimeStart;
+    TimeSpan timePlay;
+    float timeStartValue;
+
 
 
     private void Awake()
@@ -26,34 +31,44 @@ public class InGameUI : MonoBehaviour
     }
     private void Start()
     {
-       
+        tmp_timer.text = "Time : 00:00:00";
+        isTimeStart = false;
     }
     private void Update()
     {
+        if (playerStamina >= 100.0f) playerStamina = 100.0f;
         tmp_stamina.text = "Stamina : " + Mathf.RoundToInt(playerStamina);
 
         tmp_nyawa.text = "Nyawa : " + PlayerDestroy.playerCurrentHealth;
 
-        //everyGunAmmo();
+        
     }
-    void everyGunAmmo() 
-    {
-        
-        
-        if (!PlayerGuns.playerGuns.fakeWeapon[0].activeSelf
-            )
-        {
-            
-            tmp_gunAmmo.text = "SMG : " + GunController.gunController.curAmmo;
-        }
-        if (!PlayerGuns.playerGuns.fakeWeapon[1].activeSelf
-            )
-        {
-           
-            tmp_gunAmmo.text = "Pistol : " + GunController.gunController.curAmmo;
-        }
-        //else {  tmp_gunAmmo.text = "No Gun"; }
-        
 
+
+    public void timeStart() // -> di pangil pas ambil senjata pertama kali atau trigger sm pintu atau pas pause;
+    {
+       
+        isTimeStart = true;
+        timeStartValue = 0f;
+        StartCoroutine(timeStarting());
     }
+
+    public void timeEnd() //-> di panggil pas game over
+    {
+        isTimeStart = false;
+    }
+
+    IEnumerator timeStarting() 
+    {
+        while (isTimeStart ) 
+        {
+            timeStartValue += Time.deltaTime;
+            timePlay = TimeSpan.FromSeconds(timeStartValue);
+            string strTimerPlaying = "Time : " + timePlay.ToString("mm':'ss':'ff");
+            tmp_timer.text = strTimerPlaying;
+
+            yield return null;
+        }
+    }
+
 }

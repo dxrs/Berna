@@ -48,10 +48,14 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -2f;
         }
-        if(Input.GetKeyDown(KeyCode.Space) && isInGround) 
+        if(Input.GetKeyDown(KeyCode.Space) && isInGround)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-           
+            if (InGameUI.inGameUI.playerStamina > 0.0f) 
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            }
+
         }
 
         if (!isInGround) 
@@ -95,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 isSprint = true;
                 if (InGameUI.inGameUI.playerStamina > 0.0f) 
                 {
-                    InGameUI.inGameUI.playerStamina -= 8 * Time.deltaTime;
+                    InGameUI.inGameUI.playerStamina -= 10 * Time.deltaTime;
                 }
             }
            
@@ -120,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (InGameUI.inGameUI.playerStamina < 100.0f)
             {
-                InGameUI.inGameUI.playerStamina += 3 * Time.deltaTime;
+                InGameUI.inGameUI.playerStamina += 12 * Time.deltaTime;
             }
         }
         #endregion 
@@ -141,7 +145,15 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (!GunController.gunController.isAiming && isSprint)
             {
-                walkSpeed = 8.2f;
+                if (InGameUI.inGameUI.playerStamina > 0.0f) 
+                {
+                    walkSpeed = 8.2f;
+                }
+                else 
+                {
+                    walkSpeed = 4;
+                }
+                
             }
 
             else if (GunController.gunController.isAiming && isSprint)
