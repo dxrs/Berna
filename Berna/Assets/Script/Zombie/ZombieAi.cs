@@ -86,7 +86,15 @@ public class ZombieAi : MonoBehaviour
     void patroling()
     {
         agent.updateRotation = true;
-        agent.speed = 0.5f;
+        if (!PlayerManager.playerManager.gameOver) 
+        {
+            agent.speed = 0.5f;
+        }
+        else 
+        {
+            agent.speed = 0.0f;
+        }
+        
 
         if(!walkPointSet)
         {

@@ -39,13 +39,18 @@ public class InGameUI : MonoBehaviour
         if (playerStamina >= 100.0f) playerStamina = 100.0f;
         tmp_stamina.text = "Stamina : " + Mathf.RoundToInt(playerStamina);
 
-        tmp_nyawa.text = "Nyawa : " + PlayerDestroy.playerCurrentHealth;
+        if (!PlayerManager.playerManager.gameOver) 
+        {
+            tmp_nyawa.text = "Nyawa : " + PlayerDestroy.playerCurrentHealth;
+        }
+        
 
         
     }
 
-
-    public void timeStart() // -> di pangil pas ambil senjata pertama kali atau trigger sm pintu atau pas pause;
+    //timer
+    #region
+    public void timeStart() // -> di pangil pas trigger sm pintu;
     {
        
         isTimeStart = true;
@@ -70,5 +75,6 @@ public class InGameUI : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 
 }

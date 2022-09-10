@@ -13,15 +13,12 @@ public class PlayerDestroy : MonoBehaviour
         playerCurrentHealth = playerMaxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
-        //demaged();
-    }
-
-    public static void demaged()
-    {
-        
+        if (PlayerManager.playerManager.gameOver)
+        {
+            Destroy(gameObject);
+            InGameUI.inGameUI.timeEnd();
+        }
     }
 }

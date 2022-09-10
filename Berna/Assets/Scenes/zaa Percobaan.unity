@@ -17164,6 +17164,7 @@ GameObject:
   - component: {fileID: 1131950396}
   - component: {fileID: 1131950395}
   - component: {fileID: 1131950398}
+  - component: {fileID: 1131950399}
   m_Layer: 7
   m_Name: Player Controller
   m_TagString: Untagged
@@ -17256,6 +17257,20 @@ MonoBehaviour:
   fakeWeapon:
   - {fileID: 1889213564}
   - {fileID: 197889951}
+--- !u!114 &1131950399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131950394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c7891a5dd2e5e40a2a6d1b24f4d4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStarted: 0
+  gameOver: 0
 --- !u!1 &1139112156
 GameObject:
   m_ObjectHideFlags: 0
