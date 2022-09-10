@@ -35,20 +35,13 @@ public class B_colorChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y<39||transform.position.x==stoppoint[x])
+        if(transform.position.y<39)
         {
-            if(x+1<stoppoint.Length)
-            {
-                x++;
-            }
-            
-            colorAsli();
-            
-                
+            belumSiap();   
         }
-        if(transform.position.x!=stoppoint[x] && transform.position.y==39)
+        if(transform.position.y==39)
         {
-            colorWhite();
+            siap();
         }
         warnaAsli.material.color = Color.white * intensity;
     }
@@ -62,19 +55,56 @@ public class B_colorChanger : MonoBehaviour
         intensity = 0;
     }
 
+    void siap()
+    {
+        if(transform.position.x==stoppoint[0])
+        {
+            colorAsli();
+        }
+        else if(transform.position.x==stoppoint[1])
+        {
+            colorAsli();
+            print("asdfa");
+        }
+        else if(transform.position.x==stoppoint[2])
+        {
+            colorAsli();
+        }
+        else if(transform.position.x==stoppoint[3])
+        {
+            colorAsli();
+        }
+        else if(transform.position.x==stoppoint[4])
+        {
+            colorAsli();
+        }
+        else
+        {
+            colorWhite();
+        }
+    }
+
+    void belumSiap()
+    {
+        colorAsli();
+    }
+
     void kodingCoba()
     {
-        
+        if(x>=stoppoint.Length-1)
+        {
+            return;
+        }
+        x++;
     }
     IEnumerator test()
     {
         while (true)
         {
-            if(x <= stoppoint.Length-1)
+            if(transform.position.x == stoppoint[x])
             {
                 kodingCoba();
             }
-            yield return null;
         }
     }
 }
