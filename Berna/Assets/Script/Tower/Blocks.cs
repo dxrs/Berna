@@ -11,13 +11,13 @@ public class Blocks : MonoBehaviour
 
     Rigidbody rb;
 
-    bool stop = false;
+    public bool stop = false;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         target = Waypoints.points[0];
-        StartCoroutine(stopbentar());
+        //StartCoroutine(stopbentar());
 
         rb.isKinematic = true;
     }
@@ -46,20 +46,5 @@ public class Blocks : MonoBehaviour
     void getShoot()
     {
         rb.isKinematic = true;
-    }
-
-    public IEnumerator stopbentar()
-    {
-        while (true)
-        {
-            if(Vector3.Distance(transform.position,target.position)<=0.05f)
-            {
-                stop = true;
-                GetNextWaypoint();
-            }
-            yield return new WaitForSeconds(1);
-            stop = false;
-        }
-        
     }
 }

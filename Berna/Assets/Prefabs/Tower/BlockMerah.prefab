@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1875847422769483406}
   - component: {fileID: 2866281724785525216}
   - component: {fileID: 2866281724785525243}
+  - component: {fileID: -5640289271421271499}
   m_Layer: 0
   m_Name: BlockMerah
   m_TagString: Blocks
@@ -127,3 +128,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5243edf595fe0d64ab1d98c7cbdacfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
+--- !u!114 &-5640289271421271499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866281724785525217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137b1119c9b3cfc4ebbad2a51c4d4442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoppoint:
+  - 8
+  - 4
+  - 0
+  - -4
+  - -8
+  intensity: 0
+  shotEnable: 0

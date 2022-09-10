@@ -284,8 +284,6 @@ MonoBehaviour:
   speed: 2
   blocks:
   - {fileID: 2866281724785525217, guid: 14951fe7b2096304193d510b320b4699, type: 3}
-  - {fileID: 2866281724785525217, guid: cada4ea48a98ab947b04577407c005e4, type: 3}
-  getShot: 0
 --- !u!114 &-3475861816372995440
 MonoBehaviour:
   m_ObjectHideFlags: 0

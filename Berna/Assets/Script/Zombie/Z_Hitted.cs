@@ -22,7 +22,7 @@ public class Z_Hitted : MonoBehaviour
     {
         blinkTimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinkTimer/blinkDuration);
-        float intensity = lerp * blinkIntensity;
+        float intensity = (lerp * blinkIntensity) ;
         meshRender.material.color = Color.white * intensity;
     }
 

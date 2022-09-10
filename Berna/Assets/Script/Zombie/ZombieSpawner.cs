@@ -19,7 +19,6 @@ public class ZombieSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(zombieCount);
         if(zombieCount < 10)
         {
             StartCoroutine(spawner());

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Crane : MonoBehaviour
 {
 
-    public float speed =0.05f;
+    public float speed =0.1f;
     Transform target;
 
     private int waypointIndex = 0;
@@ -16,7 +16,7 @@ public class Crane : MonoBehaviour
     Transform blockSpawnPoint;
     bool stop = false;
 
-    public bool getShot;
+
 
 
     void Awake()
@@ -30,7 +30,6 @@ public class Crane : MonoBehaviour
         blockRB = blokYangDibawa.GetComponent<Rigidbody>();
         target = Waypoints.points[0];
         StartCoroutine(cranePause());
-        getShot = false;
     }
 
     // Update is called once per frame
@@ -52,7 +51,6 @@ public class Crane : MonoBehaviour
         if(!stop)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed *Time.deltaTime);
-            
         }
     }
     void GetNextWaypoint()
@@ -91,7 +89,6 @@ public class Crane : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
             stop = false;
-
         }
     }
 
