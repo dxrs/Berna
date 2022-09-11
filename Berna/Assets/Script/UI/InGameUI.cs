@@ -38,10 +38,10 @@ public class InGameUI : MonoBehaviour
     {
         if (playerStamina >= 100.0f) playerStamina = 100.0f;
         tmp_stamina.text = "Stamina : " + Mathf.RoundToInt(playerStamina);
-
+        tmp_nyawa.text = "Nyawa : " + Mathf.RoundToInt(playerHealth);
         if (!PlayerManager.playerManager.gameOver) 
         {
-            tmp_nyawa.text = "Nyawa : " + PlayerDestroy.playerCurrentHealth;
+            
         }
         
 

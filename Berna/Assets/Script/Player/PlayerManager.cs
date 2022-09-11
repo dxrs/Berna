@@ -15,10 +15,10 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayerDestroy.playerCurrentHealth <= 0.0f) 
+        if (InGameUI.inGameUI.playerHealth <= 0.0f) 
         {
             gameOver = true;
-            PlayerDestroy.playerCurrentHealth = 0f;
+            InGameUI.inGameUI.playerHealth = 0.0f;
         }
     }
 }

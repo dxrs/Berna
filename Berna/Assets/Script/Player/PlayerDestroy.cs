@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class PlayerDestroy : MonoBehaviour
 {
-    float playerMaxHealth = 100;
-
-    public static float playerCurrentHealth;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerCurrentHealth = playerMaxHealth;
-    }
-
-    private void OnDestroy()
+    private void Update()
     {
         if (PlayerManager.playerManager.gameOver)
         {
             Destroy(gameObject);
             InGameUI.inGameUI.timeEnd();
         }
+    }
+
+    private void OnDestroy()
+    {
+       
     }
 }
