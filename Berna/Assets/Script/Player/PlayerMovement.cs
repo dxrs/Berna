@@ -41,16 +41,28 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+
+        if (!PlayerManager.playerManager.gameOver) 
+        {
+            jumpInput();
+            movementInput();
+            movementSpeed();
+        }
+      
+    }
+
+
+    void jumpInput() 
+    {
         isInGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
 
-        if(isInGround && velocity.y < 0f) 
+        if (isInGround && velocity.y < 0f)
         {
             velocity.y = -2f;
         }
-        if(Input.GetKeyDown(KeyCode.Space) && isInGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isInGround)
         {
-            if (InGameUI.inGameUI.playerStamina > 0.0f) 
+            if (InGameUI.inGameUI.playerStamina > 0.0f)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
@@ -58,21 +70,15 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (!isInGround) 
+        if (!isInGround)
         {
             if (InGameUI.inGameUI.playerStamina > 0.0f)
             {
                 InGameUI.inGameUI.playerStamina -= 8 * Time.deltaTime;
             }
         }
-
-        pcMovement();
-        movementSpeed();
     }
-
- 
-
-    void pcMovement() 
+    void movementInput() 
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");

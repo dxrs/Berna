@@ -86,10 +86,14 @@ public class GunController : MonoBehaviour
         {
             tmp_curAmmo.text = "Pistol : " + curAmmo;
         }
-        gunShoot();
-        gunSway();
-        gunAiming();
-        gunMovmenentAnim(); // sementara
+        if (!PlayerManager.playerManager.gameOver) 
+        {
+            gunShoot();
+            gunSway();
+            gunAiming();
+            gunMovmenentAnim(); // sementara
+        }
+       
        
         
     }
@@ -171,7 +175,7 @@ public class GunController : MonoBehaviour
             
             isAiming = true;    
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1) || PlayerManager.playerManager.gameOver)
         {
            
             isAiming = false;

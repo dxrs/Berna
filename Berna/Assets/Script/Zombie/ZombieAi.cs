@@ -87,15 +87,9 @@ public class ZombieAi : MonoBehaviour
     {
         agent.updateRotation = true;
 
-        //BERMASALAH
-        if (!PlayerManager.playerManager.gameOver) 
-        {
-            agent.speed = 0.5f;
-        }
-        else 
-        {
-            agent.speed = 0.0f;
-        }
+
+        agent.speed = 0.5f;
+       
         
 
         if(!walkPointSet)
