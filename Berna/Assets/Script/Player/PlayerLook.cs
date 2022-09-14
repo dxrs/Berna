@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
 
-    public static PlayerLook playerLook;
+    
     public float sensitivity; // sensitivity mouse
 
     [SerializeField] Transform playerController;
@@ -14,7 +14,7 @@ public class PlayerLook : MonoBehaviour
     
     private void Awake()
     {
-        playerLook = this;
+        //playerLook = this;
     }
     private void Update()
     {
