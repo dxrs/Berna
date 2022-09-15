@@ -59,7 +59,7 @@ public class ZombieAi : MonoBehaviour
             patroling();
             ZombieAnim.isAttack = false;
         }
-        if(playerInRange && !playerInAttackRange)
+        if(playerInRange && !playerInAttackRange && player!=null)
         {
             chasing();
             ZombieAnim.isAttack = false;

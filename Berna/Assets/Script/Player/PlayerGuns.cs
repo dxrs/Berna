@@ -7,7 +7,7 @@ public class PlayerGuns : MonoBehaviour
     public static PlayerGuns playerGuns;
 
     public GameObject[] realWeapon;
-    public bool test;
+    public bool isWeaponPickedUp;
 
     [SerializeField] Camera cam;
     [SerializeField] float pickRange;
@@ -35,7 +35,7 @@ public class PlayerGuns : MonoBehaviour
     {
         if (realWeapon[0].activeSelf || realWeapon[1].activeSelf) 
         {
-            test = true;
+            isWeaponPickedUp = true;
         }
        
         if (Input.GetKeyDown(KeyCode.E)) 

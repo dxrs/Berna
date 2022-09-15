@@ -8,6 +8,9 @@ public class PlayerManager : MonoBehaviour
 
     public bool gameStarted;
     public bool gameOver;
+    public bool test;
+
+    [SerializeField] BoxCollider physicsGround;
 
     private void Awake()
     {
@@ -19,6 +22,11 @@ public class PlayerManager : MonoBehaviour
         {
             gameOver = true;
             InGameUI.inGameUI.playerHealth = 0.0f;
+        }
+
+        if (gameOver) 
+        {
+            physicsGround.enabled = true;
         }
     }
 }
