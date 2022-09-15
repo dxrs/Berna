@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isSprint;
     public bool isPlayerWalk;
     public bool isInGround;
+    public bool isRegenerated;
 
     [SerializeField] float walkSpeed;
     [SerializeField] float gravity = -9.81f;
@@ -41,16 +42,28 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+
+        if (!PlayerManager.playerManager.gameOver) 
+        {
+            jumpInput();
+            movementInput();
+            movementSpeed();
+        }
+      
+    }
+
+
+    void jumpInput() 
+    {
         isInGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
 
-        if(isInGround && velocity.y < 0f) 
+        if (isInGround && velocity.y < 0f)
         {
             velocity.y = -2f;
         }
-        if(Input.GetKeyDown(KeyCode.Space) && isInGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isInGround)
         {
-            if (InGameUI.inGameUI.playerStamina > 0.0f) 
+            if (InGameUI.inGameUI.playerStamina > 0.0f)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
@@ -58,21 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (!isInGround) 
-        {
-            if (InGameUI.inGameUI.playerStamina > 0.0f)
-            {
-                InGameUI.inGameUI.playerStamina -= 8 * Time.deltaTime;
-            }
-        }
-
-        pcMovement();
-        movementSpeed();
+       
     }
-
- 
-
-    void pcMovement() 
+    void movementInput() 
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
@@ -84,8 +85,17 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
-        
-
+        if (!isInGround || isSprint)
+        {
+            if (InGameUI.inGameUI.playerStamina > 0.0f)
+            {
+                InGameUI.inGameUI.playerStamina -= 10 * Time.deltaTime;
+            }
+        }
+        if (InGameUI.inGameUI.playerStamina < 0f)
+        {
+            isRegenerated = true;
+        }
         //-> player sprint 
         #region
         if (Input.GetKey(KeyCode.W) ||
@@ -99,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
                 isSprint = true;
                 if (InGameUI.inGameUI.playerStamina > 0.0f) 
                 {
-                    InGameUI.inGameUI.playerStamina -= 10 * Time.deltaTime;
+                    //InGameUI.inGameUI.playerStamina -= 10 * Time.deltaTime;
                 }
             }
            
@@ -122,9 +132,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!isSprint) 
         {
-            if (InGameUI.inGameUI.playerStamina < 100.0f)
+            if (InGameUI.inGameUI.playerStamina < 100.0f && !isRegenerated &&isInGround)
             {
                 InGameUI.inGameUI.playerStamina += 12 * Time.deltaTime;
+            }
+            if (isRegenerated) 
+            {
+                StartCoroutine(playerMoveRegenerated());
             }
         }
         #endregion 
@@ -170,5 +184,17 @@ public class PlayerMovement : MonoBehaviour
        
 
 
-    } 
+    }
+
+    IEnumerator playerMoveRegenerated() 
+    {
+        yield return new WaitForSeconds(5);
+        if (isRegenerated) 
+        {
+            
+            isRegenerated = false;
+            
+            InGameUI.inGameUI.playerStamina += 12 * Time.deltaTime;
+        }
+    }
 }

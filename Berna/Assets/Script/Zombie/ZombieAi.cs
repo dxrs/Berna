@@ -36,7 +36,7 @@ public class ZombieAi : MonoBehaviour
             instance = this;
         }
 
-        player = GameObject.Find("Player Controller").transform;
+        player = GameObject.Find("Player Body").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -59,12 +59,12 @@ public class ZombieAi : MonoBehaviour
             patroling();
             ZombieAnim.isAttack = false;
         }
-        if(playerInRange && !playerInAttackRange)
+        if(playerInRange && !playerInAttackRange && player!=null)
         {
             chasing();
             ZombieAnim.isAttack = false;
         }
-        if(playerInRange && playerInAttackRange)
+        if(playerInRange && playerInAttackRange && player!=null)
         {
             attack();
             ZombieAnim.isAttack = true;
@@ -86,7 +86,11 @@ public class ZombieAi : MonoBehaviour
     void patroling()
     {
         agent.updateRotation = true;
+
+
         agent.speed = 0.5f;
+       
+        
 
         if(!walkPointSet)
         {
@@ -112,14 +116,20 @@ public class ZombieAi : MonoBehaviour
         agent.updateRotation = true;
         walkPointSet = false;
         agent.stoppingDistance = 2;
-        agent.SetDestination(player.position);
+        if (player != null) { agent.SetDestination(player.position); }
+        
         agent.speed = 5;
     }
 
     void attack()
     {
         agent.updateRotation = false;
-        FaceTarget(player.position);
+        if (player != null) 
+        {
+            FaceTarget(player.position);
+        }
+        
+        
         
     }
 

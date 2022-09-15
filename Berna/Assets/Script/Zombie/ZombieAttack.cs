@@ -18,11 +18,11 @@ public class ZombieAttack : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Player")
+        if(other.gameObject.tag=="Player" && !PlayerManager.playerManager.gameOver)
         {
             if(hitPlayer<1)
             {
-                PlayerDestroy.playerCurrentHealth-=10;
+                InGameUI.inGameUI.playerHealth-=10;
                 hitPlayer++;
             }
             else

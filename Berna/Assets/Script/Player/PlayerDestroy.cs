@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class PlayerDestroy : MonoBehaviour
 {
-    float playerMaxHealth = 100;
-
-    public static float playerCurrentHealth;
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        playerCurrentHealth = playerMaxHealth;
+        if (PlayerManager.playerManager.gameOver)
+        {
+            Destroy(gameObject);
+            InGameUI.inGameUI.timeEnd();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
-        //demaged();
-    }
-
-    public static void demaged()
-    {
-        
+       
     }
 }

@@ -10,8 +10,8 @@ public class GunController : MonoBehaviour
     public Camera cam;
     public Transform gunPivot;
     public Animator gunAnim;
-    public bool isPlayershot;
-    public ParticleSystem gunMuzzle;
+    private bool isPlayershot;
+    [SerializeField] ParticleSystem gunMuzzle;
 
     [Header("Gun ID")] //--> bakal kepake nanti
     [SerializeField]
@@ -56,6 +56,18 @@ public class GunController : MonoBehaviour
     [Tooltip("default fov pas lagi tidak aim")]
     [SerializeField] float defaultFov;
 
+    [Header("Recoil")]
+    public float snappiness;
+    public float returnAmount;
+    [SerializeField] float recoilX;
+    [SerializeField] float recoilY;
+    [SerializeField] float recoilZ;
+    [SerializeField] float aimRecoilX;
+    [SerializeField] float aimRecoilY;
+    [SerializeField] float aimRecoilZ;
+    [SerializeField] float backToZ;
+    Vector3 targetRot, curRot, targetPos, curPos, gunPos;
+
    
 
 
@@ -67,7 +79,7 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-       
+        gunPos = transform.position;
         originRotPoint = gunPivot.transform.localRotation;
         curAmmo = gunAmmo;
         
@@ -86,12 +98,22 @@ public class GunController : MonoBehaviour
         {
             tmp_curAmmo.text = "Pistol : " + curAmmo;
         }
-        gunShoot();
-        gunSway();
-        gunAiming();
-        gunMovmenentAnim(); // sementara
-       
+      
         
+        
+        if (!PlayerManager.playerManager.gameOver) 
+        {
+            gunShoot();
+            gunSway();
+            gunAiming();
+            gunMovmenentAnim(); // sementara
+        }
+        if (PlayerManager.playerManager.test) 
+        {
+            
+        }
+        //gunRecoilUpdate();
+
     }
 
     private void FixedUpdate()
@@ -109,7 +131,7 @@ public class GunController : MonoBehaviour
             
             gunAnim.SetBool("sht", true);
             isPlayershot = true;
-
+            PlayerManager.playerManager.test = true;
            
         }
        
@@ -118,7 +140,7 @@ public class GunController : MonoBehaviour
         {
             gunAnim.SetBool("sht", false);
             isPlayershot = false;
-            
+            PlayerManager.playerManager.test = false;
         }
     }
 
@@ -133,6 +155,7 @@ public class GunController : MonoBehaviour
         else if (curAmmo <= 0) { curAmmo = 0; }
         AudioScript.instance.SMG_Sound();
         gunMuzzle.Play();
+        gunRecoil();
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position,
          cam.transform.forward,
@@ -164,6 +187,43 @@ public class GunController : MonoBehaviour
         }
     }
 
+    #region
+    void gunRecoilUpdate() // bermasalah
+    {
+        targetRot = Vector3.Lerp(targetRot, Vector3.zero, Time.deltaTime * returnAmount);
+        curRot = Vector3.Slerp(curRot, targetRot, Time.fixedDeltaTime * snappiness);
+
+        cam.transform.localRotation = Quaternion.Euler(curRot); // bermaslah
+        //Debug.Log(cam.transform.localRotation);
+        //back();
+    }
+    public void gunRecoil() 
+    {
+        targetPos -= new Vector3(0, 0, backToZ);
+        if (!isAiming) 
+        {
+            targetRot += new Vector3(recoilX, 
+                Random.Range(-recoilY, recoilY), Random.Range(-recoilZ, recoilZ));
+            Debug.Log("not aim rec");
+        }
+        else 
+        {
+            targetRot += new Vector3(aimRecoilX,
+                Random.Range(-aimRecoilY, aimRecoilY), Random.Range(-aimRecoilZ, aimRecoilZ));
+            Debug.Log("aim rec");
+        }
+        
+        //Debug.Log("recoil lah cok");
+    }
+
+    void back() 
+    {
+        targetPos = Vector3.Lerp(targetPos, gunPos, Time.deltaTime * returnAmount);
+        curPos = Vector3.Lerp(curPos, targetPos, Time.fixedDeltaTime * snappiness);
+        transform.localPosition = curPos;
+    }
+    #endregion
+
     void gunAiming() 
     {
         if (Input.GetMouseButton(1)) 
@@ -171,7 +231,7 @@ public class GunController : MonoBehaviour
             
             isAiming = true;    
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1) || PlayerManager.playerManager.gameOver)
         {
            
             isAiming = false;
