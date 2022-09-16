@@ -158,7 +158,11 @@ public class GunController : MonoBehaviour
             //nembak cubenya
             if (hit.transform.tag == "Crane")
             {
-                shootTarget.craneShot();
+                Crane crn = hit.transform.GetComponent<Crane>();
+                if(crn.shotEnable ==true)
+                {
+                    shootTarget.craneShot();
+                }
             }
 
         }

@@ -14,27 +14,28 @@ public class Crane : MonoBehaviour
     GameObject blokYangDibawa;
     Rigidbody blockRB;
     Transform blockSpawnPoint;
+
+    B_colorChanger boxColor;
+
+    public bool shotEnable;
     bool stop = false;
 
 
 
-
-    void Awake()
-    {
-    }
-    // Start is called before the first frame update
     void Start()
     {
         blockSpawnPoint = this.gameObject.transform.GetChild(3);
         blokYangDibawa =(GameObject)Instantiate(blocks[Random.Range(0,blocks.Length)],blockSpawnPoint.position,Quaternion.identity);
         blockRB = blokYangDibawa.GetComponent<Rigidbody>();
+        boxColor = blokYangDibawa.GetComponent<B_colorChanger>();
         target = Waypoints.points[0];
         StartCoroutine(cranePause());
     }
 
-    // Update is called once per frame
     void Update()
     {
+        onShot();
+
         if(blokYangDibawa != null)
         {
             if(blockSpawnPoint != null)
@@ -71,6 +72,11 @@ public class Crane : MonoBehaviour
         }        
         waypointIndex++;
         target = Waypoints.points[waypointIndex];
+    }
+
+    void onShot()
+    {
+        shotEnable = boxColor.ready;
     }
 
     public void destroyCrane()

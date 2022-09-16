@@ -11,15 +11,11 @@ public class B_colorChanger : MonoBehaviour
     float[] stoppoint = new float[5];
     public float intensity;
 
-    bool sidePos = true;
-    public bool shotEnable;
-
-
+    public bool ready;
     int x;
 
     void Awake()
     {
-        x=0;
         if(instance == null)
         {
             instance = this;
@@ -35,11 +31,11 @@ public class B_colorChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y<39)
+        if(transform.position.y<37.5)
         {
             belumSiap();   
         }
-        if(transform.position.y==39)
+        if(transform.position.y==37.5)
         {
             siap();
         }
@@ -49,10 +45,12 @@ public class B_colorChanger : MonoBehaviour
     void colorWhite()
     {
         intensity = 5;
+        ready = false;
     }
     void colorAsli()
     {
         intensity = 0;
+        ready = true;
     }
 
     void siap()
@@ -64,7 +62,6 @@ public class B_colorChanger : MonoBehaviour
         else if(transform.position.x==stoppoint[1])
         {
             colorAsli();
-            print("asdfa");
         }
         else if(transform.position.x==stoppoint[2])
         {
@@ -87,24 +84,5 @@ public class B_colorChanger : MonoBehaviour
     void belumSiap()
     {
         colorAsli();
-    }
-
-    void kodingCoba()
-    {
-        if(x>=stoppoint.Length-1)
-        {
-            return;
-        }
-        x++;
-    }
-    IEnumerator test()
-    {
-        while (true)
-        {
-            if(transform.position.x == stoppoint[x])
-            {
-                kodingCoba();
-            }
-        }
     }
 }
