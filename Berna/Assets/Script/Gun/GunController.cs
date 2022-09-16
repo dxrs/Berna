@@ -195,7 +195,7 @@ public class GunController : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(curRot); // bermaslah
         //Debug.Log(cam.transform.localRotation);
-        //back();
+        back();
     }
     public void gunRecoil() 
     {
