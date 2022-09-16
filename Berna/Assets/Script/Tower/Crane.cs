@@ -5,7 +5,7 @@ using UnityEngine;
 public class Crane : MonoBehaviour
 {
 
-    public float speed =0.05f;
+    public float speed =0.1f;
     Transform target;
 
     private int waypointIndex = 0;
@@ -14,28 +14,28 @@ public class Crane : MonoBehaviour
     GameObject blokYangDibawa;
     Rigidbody blockRB;
     Transform blockSpawnPoint;
+
+    B_colorChanger boxColor;
+
+    public bool shotEnable;
     bool stop = false;
 
-    public bool getShot;
 
 
-    void Awake()
-    {
-    }
-    // Start is called before the first frame update
     void Start()
     {
         blockSpawnPoint = this.gameObject.transform.GetChild(3);
         blokYangDibawa =(GameObject)Instantiate(blocks[Random.Range(0,blocks.Length)],blockSpawnPoint.position,Quaternion.identity);
         blockRB = blokYangDibawa.GetComponent<Rigidbody>();
+        boxColor = blokYangDibawa.GetComponent<B_colorChanger>();
         target = Waypoints.points[0];
         StartCoroutine(cranePause());
-        getShot = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        onShot();
+
         if(blokYangDibawa != null)
         {
             if(blockSpawnPoint != null)
@@ -52,7 +52,6 @@ public class Crane : MonoBehaviour
         if(!stop)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed *Time.deltaTime);
-            
         }
     }
     void GetNextWaypoint()
@@ -75,6 +74,11 @@ public class Crane : MonoBehaviour
         target = Waypoints.points[waypointIndex];
     }
 
+    void onShot()
+    {
+        shotEnable = boxColor.ready;
+    }
+
     public void destroyCrane()
     {
         Destroy(blockSpawnPoint.gameObject);
@@ -91,7 +95,6 @@ public class Crane : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
             stop = false;
-
         }
     }
 

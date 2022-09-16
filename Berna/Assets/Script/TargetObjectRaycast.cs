@@ -32,7 +32,7 @@ public class TargetObjectRaycast : MonoBehaviour
     void die() 
     {
         Destroy(gameObject);
-        ZombieSpawner.zombieSpawner.zombieCount--;
+        ZombieSpawner.zombieCount -=1;
     }
 
     void zombieHealth()
