@@ -163,8 +163,8 @@ public class GunController : MonoBehaviour
          shootRange))
         {
            
-            Debug.DrawLine(cam.transform.position, hit.transform.position, Color.red);
-            Debug.Log(hit.transform.name);
+            //Debug.DrawLine(cam.transform.position, hit.transform.position, Color.red);
+            //Debug.Log(hit.transform.name);
             TargetObjectRaycast shootTarget =
                    hit.transform.GetComponent<TargetObjectRaycast>();
             if (shootTarget != null)
