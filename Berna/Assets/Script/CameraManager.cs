@@ -38,7 +38,7 @@ public class CameraManager : MonoBehaviour
             xRot = Mathf.Clamp(xRot, -60, 60); //batas nilai rot mouse x untuk lihat ke atas atau bawah cok
 
             transform.localRotation = Quaternion.Euler(xRot, 0, 0); // rotatsi dari axis mouse x(atas)
-            Debug.Log(transform.localRotation);
+            //Debug.Log(transform.localRotation);
             playerController.Rotate(Vector3.up * Mouse_x); // rotate dari parent object mengikuti rot mouse x
         }
     }
