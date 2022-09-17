@@ -108,10 +108,7 @@ public class GunController : MonoBehaviour
             gunAiming();
             gunMovmenentAnim(); // sementara
         }
-        if (PlayerManager.playerManager.test) 
-        {
-            
-        }
+       
         //gunRecoilUpdate();
 
     }
@@ -131,7 +128,7 @@ public class GunController : MonoBehaviour
             
             gunAnim.SetBool("sht", true);
             isPlayershot = true;
-            PlayerManager.playerManager.test = true;
+       
            
         }
        
@@ -140,7 +137,7 @@ public class GunController : MonoBehaviour
         {
             gunAnim.SetBool("sht", false);
             isPlayershot = false;
-            PlayerManager.playerManager.test = false;
+           
         }
     }
 
@@ -208,13 +205,13 @@ public class GunController : MonoBehaviour
         {
             targetRot += new Vector3(recoilX, 
                 Random.Range(-recoilY, recoilY), Random.Range(-recoilZ, recoilZ));
-            Debug.Log("not aim rec");
+            //Debug.Log("not aim rec");
         }
         else 
         {
             targetRot += new Vector3(aimRecoilX,
                 Random.Range(-aimRecoilY, aimRecoilY), Random.Range(-aimRecoilZ, aimRecoilZ));
-            Debug.Log("aim rec");
+            //Debug.Log("aim rec");
         }
         
         //Debug.Log("recoil lah cok");

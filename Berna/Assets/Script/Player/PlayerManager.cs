@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool gameStarted;
     public bool gameOver;
-    public bool test;
+    bool test;
 
     [SerializeField] BoxCollider physicsGround;
 

@@ -17,8 +17,8 @@ public class ColorChecker : MonoBehaviour
     {
         if (other.gameObject.tag=="Block Ground") 
         {
-            print("kena");
-            test = true;
+            //print("kena");
+            //test = true;
         }
     }
     void OnCollisionEnter(Collision col)
