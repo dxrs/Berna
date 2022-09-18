@@ -12,33 +12,15 @@ public class ColorChecker : MonoBehaviour
     // peluru +2
     void Update()
     {
-        /*
-        if (test) 
-        {
-            if (gameObject != null) 
-            {
-                ScoreManager.scoreManager.comboScore = 0;
-            }
-        }
-        */
+       
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag=="Block Ground") 
         {
-            print("kena");
-            test = true;
+          
         }
-        if (other.gameObject.name == this.gameObject.name)
-        {
-            
-            if (test) 
-            {
-                //msh bingung cara deteksi jika trigger/collision blok yg tdk sm
-                //ScoreManager.scoreManager.comboScore = 0;
-            }
-            
-        }
+       
     }
     void OnCollisionEnter(Collision col)
     {
@@ -62,7 +44,7 @@ public class ColorChecker : MonoBehaviour
             Destroy(objnya.gameObject);
             GunController.gunController.curAmmo++;
             ScoreManager.scoreManager.isCombo = true;
-            //yield return new WaitForSeconds(2);
+       
 
 
         }
@@ -70,10 +52,7 @@ public class ColorChecker : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (test) 
-        {
-            //ScoreManager.scoreManager.Scorenya = ScoreManager.scoreManager.Scorenya + ScoreManager.scoreManager.comboScore;
-        }
+       
         
     }
 

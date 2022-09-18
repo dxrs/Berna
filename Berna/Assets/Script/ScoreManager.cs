@@ -26,13 +26,12 @@ public class ScoreManager : MonoBehaviour
     }
     private void Update()
     {
-        //print("di kali : " + comboScore);
-        //Scorenya = 50 + comboScore;
-        //curScore = Scorenya;
+     
+        curScore = Scorenya;
         StartCoroutine(cuk());
         if (isCombo) 
         {
-            comboScore++;
+            comboScore+=25; //25*2
         }
         StartCoroutine(cuk2());
     }
@@ -49,7 +48,7 @@ public class ScoreManager : MonoBehaviour
         if (isCombo == true) 
         {
             yield return new WaitForSeconds(0.1f);
-            Scorenya += comboScore;
+            Scorenya += comboScore; //50*2, 100*3, dsb
             
         }
     }
