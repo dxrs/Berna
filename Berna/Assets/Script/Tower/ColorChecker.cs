@@ -26,6 +26,11 @@ public class ColorChecker : MonoBehaviour
         if(col.gameObject.name == this.gameObject.name)
         {
             StartCoroutine(startDestroying(col.gameObject));
+            ScoreManager.scoreManager.comboScore++;
+        }
+        if(col.gameObject.name != this.gameObject.name) 
+        {
+            //ScoreManager.scoreManager.comboScore=0;
         }
     }
     
@@ -38,6 +43,7 @@ public class ColorChecker : MonoBehaviour
             Destroy(gameObject);
             Destroy(objnya.gameObject);
             GunController.gunController.curAmmo++;
+            
         }
     }
 

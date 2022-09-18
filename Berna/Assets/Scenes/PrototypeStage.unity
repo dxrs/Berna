@@ -27552,7 +27552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980358784}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -90.715, y: 0.983, z: -83.7}
+  m_LocalPosition: {x: -90.7, y: 2.18, z: -110.9}
   m_LocalScale: {x: 0.19000025, y: 0.19, z: 0.19000025}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -28057,7 +28057,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68336
+  m_Name: pb_Mesh26036
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39122,7 +39122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882462309}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -91.81, y: 0.81, z: -91.07}
+  m_LocalPosition: {x: -91.795, y: 2.007, z: -118.270004}
   m_LocalScale: {x: 0.40000057, y: 0.40000004, z: 0.40000057}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -41422,7 +41422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStarted: 0
   gameOver: 0
-  test: 0
   physicsGround: {fileID: 1248885044}
 --- !u!114 &2004039851
 MonoBehaviour:
@@ -41499,7 +41498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004039849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.5, y: 1.955, z: -86.5}
+  m_LocalPosition: {x: -81.485, y: 2.955, z: -113.700005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
