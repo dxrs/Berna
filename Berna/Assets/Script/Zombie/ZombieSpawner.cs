@@ -19,6 +19,7 @@ public class ZombieSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (PlayerManager.playerManager.gameStarted) 
         {
             if (zombieCount < 10)
@@ -26,6 +27,7 @@ public class ZombieSpawner : MonoBehaviour
                 StartCoroutine(spawner());
             }
         }
+        */
         
     }
 

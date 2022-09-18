@@ -2811,6 +2811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scorenya: 0
   comboScore: 0
+  isCombo: 0
   tmp_score: {fileID: 0}
 --- !u!43 &306833680
 Mesh:
@@ -18211,7 +18212,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14944
+  m_Name: pb_Mesh85818
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
