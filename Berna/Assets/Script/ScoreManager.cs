@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
 
     public float Scorenya;
     public float comboScore;
+    public float curComboValue;
     public bool isCombo;
     [SerializeField] TextMeshProUGUI tmp_score;
     float curScore;
@@ -28,18 +29,19 @@ public class ScoreManager : MonoBehaviour
     {
      
         curScore = Scorenya;
+        curComboValue = comboScore-2;
         StartCoroutine(cuk());
         if (isCombo) 
         {
-            comboScore+=25; //25*2
+            
         }
-        StartCoroutine(cuk2());
+        //StartCoroutine(cuk2());
     }
      IEnumerator cuk() 
     {
         if (isCombo) 
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.0007f);
             isCombo = false;
         }
     }

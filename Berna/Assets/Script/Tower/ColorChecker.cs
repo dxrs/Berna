@@ -42,8 +42,9 @@ public class ColorChecker : MonoBehaviour
             yield return new WaitForSeconds(1);
             Destroy(gameObject);
             Destroy(objnya.gameObject);
-            GunController.gunController.curAmmo++;
-            ScoreManager.scoreManager.isCombo = true;
+            
+            test = true;
+            //ScoreManager.scoreManager.isCombo = true;
        
 
 
@@ -52,6 +53,20 @@ public class ColorChecker : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (test) 
+        {
+            ScoreManager.scoreManager.comboScore += 1;
+            GunController.gunController.curAmmo++;
+            if (ScoreManager.scoreManager.curComboValue >= 2) 
+            {
+                ScoreManager.scoreManager.Scorenya = ScoreManager.scoreManager.Scorenya +ScoreManager.scoreManager.curComboValue;
+            }
+            if (ScoreManager.scoreManager.curComboValue < 2) 
+            {
+                ScoreManager.scoreManager.Scorenya += 100;
+            }
+            
+        }
        
         
     }

@@ -2811,6 +2811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scorenya: 0
   comboScore: 0
+  curComboValue: 2
   isCombo: 0
   tmp_score: {fileID: 0}
 --- !u!43 &306833680
