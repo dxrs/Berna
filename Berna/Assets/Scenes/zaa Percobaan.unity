@@ -2814,6 +2814,7 @@ MonoBehaviour:
   curComboValue: 2
   isCombo: 0
   tmp_score: {fileID: 0}
+  curScore: 0
 --- !u!43 &306833680
 Mesh:
   m_ObjectHideFlags: 0

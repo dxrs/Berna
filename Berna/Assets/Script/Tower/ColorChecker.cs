@@ -12,7 +12,10 @@ public class ColorChecker : MonoBehaviour
     // peluru +2
     void Update()
     {
-       
+        if (test)
+        {
+            ScoreManager.scoreManager.Scorenya += 100;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -55,16 +58,10 @@ public class ColorChecker : MonoBehaviour
     {
         if (test) 
         {
-            ScoreManager.scoreManager.comboScore += 1;
+            
             GunController.gunController.curAmmo++;
-            if (ScoreManager.scoreManager.curComboValue >= 2) 
-            {
-                ScoreManager.scoreManager.Scorenya = ScoreManager.scoreManager.Scorenya +ScoreManager.scoreManager.curComboValue;
-            }
-            if (ScoreManager.scoreManager.curComboValue < 2) 
-            {
-                ScoreManager.scoreManager.Scorenya += 100;
-            }
+            ScoreManager.scoreManager.Scorenya += 100;
+           
             
         }
        

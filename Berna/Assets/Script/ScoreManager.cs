@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     public float curComboValue;
     public bool isCombo;
     [SerializeField] TextMeshProUGUI tmp_score;
-    float curScore;
+    [SerializeField]float curScore;
 
     private void Awake()
     {
@@ -28,9 +28,9 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
      
-        curScore = Scorenya;
+        curScore = Mathf.Lerp(curScore,Scorenya,3*Time.deltaTime);
         curComboValue = comboScore-2;
-        StartCoroutine(cuk());
+        //StartCoroutine(cuk());
         if (isCombo) 
         {
             
