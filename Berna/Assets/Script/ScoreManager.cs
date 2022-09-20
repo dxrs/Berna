@@ -9,8 +9,8 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager scoreManager;
 
     public float Scorenya;
-    public float comboScore;
-    public float curComboValue;
+    //public float comboScore;
+    //public float curComboValue;
     public bool isCombo;
     [SerializeField] TextMeshProUGUI tmp_score;
     [SerializeField]float curScore;
@@ -22,21 +22,16 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        //comboScore = 100f;
-        //StartCoroutine(cuk2());
+        
     }
     private void Update()
     {
      
         curScore = Mathf.Lerp(curScore,Scorenya,3*Time.deltaTime);
-        curComboValue = comboScore-2;
-        //StartCoroutine(cuk());
-        if (isCombo) 
-        {
-            
-        }
-        //StartCoroutine(cuk2());
+        //curComboValue = comboScore-2;
+        
     }
+    /*
      IEnumerator cuk() 
     {
         if (isCombo) 
@@ -54,6 +49,6 @@ public class ScoreManager : MonoBehaviour
             
         }
     }
-
+    */
 
 }

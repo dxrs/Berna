@@ -14,9 +14,10 @@ public class PlayerTrigger : MonoBehaviour
     {
         if(other.gameObject.tag=="Door Trigger") 
         {
+            //print("kena");
             PlayerManager.playerManager.gameStarted = true;
             InGameUI.inGameUI.timeStart();
-            Destroy(doorTrigger);
+            //Destroy(doorTrigger);
         }
     }
 }
