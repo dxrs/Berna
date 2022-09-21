@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PickedGunAnim : MonoBehaviour
 {
+    [SerializeField] bool diPutar;
     [SerializeField] float sineSpeed;
     [SerializeField] float sinePower;
+    [SerializeField] float rotSpeed;
 
     float randomOffset;
 
@@ -19,9 +21,17 @@ public class PickedGunAnim : MonoBehaviour
 
     private void Update()
     {
-        transform.position = pos + new Vector3(
+        if (!diPutar) 
+        {
+            transform.position = pos + new Vector3(
             Mathf.Cos(sineSpeed * Time.time + randomOffset) * sinePower,
             Mathf.Sin(sineSpeed * Time.time + randomOffset) * sinePower,
             0.0f);
+        }
+        else 
+        {
+            transform.Rotate(Vector3.up, rotSpeed*Time.deltaTime);
+        }
+        
     }
 }
