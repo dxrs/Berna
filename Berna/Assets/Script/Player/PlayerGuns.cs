@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerGuns : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerGuns : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] float pickRange;
     [SerializeField] LayerMask pickUpLayer;
+    [SerializeField] Image[] GunsLogo;
 
     [Header("Pick Up Weapon")]
     public GameObject[] fakeWeapon;
@@ -22,6 +24,8 @@ public class PlayerGuns : MonoBehaviour
     }
     private void Start()
     {
+        GunsLogo[0].enabled = false;
+        GunsLogo[1].enabled = false;
         //loop nya nanti di pindah sini klo tambah senjata
         for (int j = 0; j < realWeapon.Length; j++) 
         {
@@ -44,42 +48,32 @@ public class PlayerGuns : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray,out hit, pickRange, pickUpLayer)) 
             {
-                
-                //Debug.Log("Hit : " + hit.transform.name);
-   
                 // masih pke cara manual
                 if (hit.transform.name == fakeWeapon[0].name)
                 {
-                   
-                    //print("dapat smg");
-                    //Debug.Log("senjata ammo " + GunController.gunController.curAmmo);
                     realWeapon[0].SetActive(true);
                     fakeWeapon[0].SetActive(false);
+                    //logoDisplay
+                    GunsLogo[0].enabled = true;
+                    GunsLogo[1].enabled = false;
                     if (realWeapon[0].activeSelf == true) 
                     {
-
-                        //InGameUI.inGameUI.timeStart();
                         realWeapon[1].SetActive(false);
                         fakeWeapon[1].SetActive(true);
-                      
-
                     }
                     
                 }
                 if (hit.transform.name == fakeWeapon[1].name)
                 {
-                  
                     realWeapon[1].SetActive(true);
                     fakeWeapon[1].SetActive(false);
+                    //logoDisplay
+                    GunsLogo[0].enabled = false;
+                    GunsLogo[1].enabled = true;
                     if (realWeapon[1].activeSelf == true)
                     {
-                        
                         realWeapon[0].SetActive(false);
                         fakeWeapon[0].SetActive(true);
-                      
-                        
-                        
-
                     }
 
                 }

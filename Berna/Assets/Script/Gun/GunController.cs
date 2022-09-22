@@ -92,11 +92,11 @@ public class GunController : MonoBehaviour
 
         if (!PlayerGuns.playerGuns.fakeWeapon[0].activeSelf) 
         {
-            tmp_curAmmo.text = "SMG : " + curAmmo;
+            tmp_curAmmo.text = curAmmo.ToString();
         }
         if (!PlayerGuns.playerGuns.fakeWeapon[1].activeSelf) 
         {
-            tmp_curAmmo.text = "Pistol : " + curAmmo;
+            tmp_curAmmo.text =curAmmo.ToString();
         }
       
         
@@ -128,8 +128,6 @@ public class GunController : MonoBehaviour
             
             gunAnim.SetBool("sht", true);
             isPlayershot = true;
-       
-           
         }
        
         
@@ -159,11 +157,10 @@ public class GunController : MonoBehaviour
          out hit,
          shootRange))
         {
-           
             //Debug.DrawLine(cam.transform.position, hit.transform.position, Color.red);
             Debug.Log(hit.transform.name+shootRange.ToString());
             TargetObjectRaycast shootTarget =
-                   hit.transform.GetComponent<TargetObjectRaycast>();
+            hit.transform.GetComponent<TargetObjectRaycast>();
             if (shootTarget != null)
             {
                 shootTarget.TakeDamage(gunDamage);
@@ -238,7 +235,7 @@ public class GunController : MonoBehaviour
             isAiming = false;
         }
 
-        if (isAiming) 
+        if (isAiming)
         {
             gunPivot.transform.localPosition = Vector3.Lerp(
                 gunPivot.transform.localPosition, aimingPos,
