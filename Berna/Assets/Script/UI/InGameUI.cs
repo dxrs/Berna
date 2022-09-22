@@ -23,6 +23,10 @@ public class InGameUI : MonoBehaviour
     TimeSpan timePlay;
     float timeStartValue;
 
+    [Header("Bar Setup")]
+    public Image StaminaBar;
+    public Image HealthBar;
+
 
 
     private void Awake()
@@ -31,15 +35,22 @@ public class InGameUI : MonoBehaviour
     }
     private void Start()
     {
-        tmp_timer.text = "Time : 00:00:00";
+        tmp_timer.text = "00:00:00";
         isTimeStart = false;
     }
     private void Update()
     {
         if (playerStamina >= 100.0f) playerStamina = 100.0f;
-        tmp_stamina.text = "Stamina : " + Mathf.RoundToInt(playerStamina);
+        tmp_stamina.text =Mathf.RoundToInt(playerStamina).ToString();
         tmp_nyawa.text = "Nyawa : " + Mathf.RoundToInt(playerHealth);
+
+        barSetup();
         
+    }
+
+    void barSetup()
+    {
+        StaminaBar.fillAmount = playerStamina/100;
     }
 
     //timer
@@ -63,7 +74,7 @@ public class InGameUI : MonoBehaviour
         {
             timeStartValue += Time.deltaTime;
             timePlay = TimeSpan.FromSeconds(timeStartValue);
-            string strTimerPlaying = "Time : " + timePlay.ToString("mm':'ss':'ff");
+            string strTimerPlaying =timePlay.ToString("mm':'ss':'ff");
             tmp_timer.text = strTimerPlaying;
 
             yield return null;

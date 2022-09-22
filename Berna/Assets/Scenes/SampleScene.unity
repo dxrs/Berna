@@ -8082,6 +8082,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crane Model
       objectReference: {fileID: 0}
+    - target: {fileID: 4974582261052665799, guid: 4c595ff7ca7eba64199328488bc71d27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c595ff7ca7eba64199328488bc71d27, type: 3}
 --- !u!1 &5197244339030295539
@@ -8099,4 +8104,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1

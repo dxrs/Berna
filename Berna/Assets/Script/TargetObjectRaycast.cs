@@ -39,10 +39,7 @@ public class TargetObjectRaycast : MonoBehaviour
     {
         if(BarImage == null)
         {
-            
             return;
-
-            
         }
         else
         {
